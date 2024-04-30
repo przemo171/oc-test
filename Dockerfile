@@ -8,3 +8,4 @@ RUN echo "ServerName 127.0.0.1" >> /etc/httpd/conf/httpd.conf
 RUN echo 'PidFile "/run/httpd.pid"' >> /etc/httpd/conf/httpd.conf
 EXPOSE 80
 CMD ["sleep", "inf"]
+USER root
