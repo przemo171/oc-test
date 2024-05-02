@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9:latest
+FROM ubi9/ubi9:latest
 MAINTAINER Przemas przemek@przemek.com
 LABEL description="Przykładowy apache z ubi9"
 RUN yum install -y httpd && \
