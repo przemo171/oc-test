@@ -6,6 +6,6 @@ yum clean all
 RUN echo "Cześć Dockerfile" > /var/www/html/index.html
 RUN echo "ServerName root@localhost" >> /etc/httpd/conf/httpd.conf
 RUN echo 'PidFile "/run/httpd.pid"' >> /etc/httpd/conf/httpd.conf
-EXPOSE 80
+EXPOSE 8080
 CMD ["sleep", "inf"]
 USER root
