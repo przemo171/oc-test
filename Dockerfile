@@ -3,5 +3,5 @@ MAINTAINER Przemas przemek@przemek.com
 LABEL description="Przykładowy apache z ubi9"
 RUN echo "DocumentRoot /var/www/html" >> /etc/httpd/conf/httpd.conf
 ADD https://download.limesurvey.org/latest-master/limesurvey6.5.5+240429.zip /var/www/html/
-CMD unzip /var/www/html/limesurvey*
+CMD unzip /var/www/html/limesurvey6.5.5+240429.zip -d /var/www/html/
 CMD ["httpd", "-D", "FOREGROUND"]
