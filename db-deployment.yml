@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: limesurvey-mysql
+  namespace: przemek
+  labels:
+    app: limesurvey-mysql
+spec:
+  selector:
+    matchLabels:
+      app: limesurvey-mysql
+  template:
+    metadata:
+      labels:
+        app: limesurvey-mysql
+    spec:
+      containers:
+      - image: tobi312/rpi-mariadb:10.5
+        name: lime-mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: onlyDevelopment
+        - name: MYSQL_DATABASE
+          value: limesurvey_db
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+        limits:
+          cpu: "1000m"
+          memory: "1024Mi"
+        ports:
+        - containerPort: 3306
+          name: lime-mysql
+        volumeMounts:
+        - name: lime-mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: lime-mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: lime-mysql-pv-claim
+		  
