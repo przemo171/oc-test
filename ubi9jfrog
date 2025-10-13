@@ -1,0 +1,39 @@
+# Bazowy obraz UBI9
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.3
+
+# Zmienna wersji Artifactory OSS
+ENV ARTIFACTORY_VERSION=7.77.10
+ENV ARTIFACTORY_HOME=/opt/jfrog/artifactory
+
+# Tworzymy użytkownika non-root (UID 1001)
+RUN microdnf update -y && \
+    microdnf install -y tar gzip java-11-openjdk wget && \
+    useradd -r -u 1001 -m -d $ARTIFACTORY_HOME -s /sbin/nologin && \
+    mkdir -p /var/opt/jfrog/artifactory && \
+    chown -R 1001:0 /var/opt/jfrog/artifactory
+
+# Pobranie i rozpakowanie Artifactory OSS
+RUN wget -O /tmp/artifactory.tar.gz https://releases.jfrog.io/artifactory/jfrog-releases-artifactory/org/artifactory/oss/jfrog-artifactory-oss-$ARTIFACTORY_VERSION-linux.tar.gz && \
+    mkdir -p $ARTIFACTORY_HOME && \
+    tar -xzf /tmp/artifactory.tar.gz --strip-components=1 -C $ARTIFACTORY_HOME && \
+    rm -f /tmp/artifactory.tar.gz && \
+    chown -R 1001:0 $ARTIFACTORY_HOME && \
+    chmod -R g+rwX $ARTIFACTORY_HOME
+
+# Ustawienie katalogu danych
+ENV ARTIFACTORY_DATA=/var/opt/jfrog/artifactory
+RUN chown -R 1001:0 $ARTIFACTORY_DATA && \
+    chmod -R g+rwX $ARTIFACTORY_DATA
+
+# Port Artifactory
+EXPOSE 8082
+
+# Użycie użytkownika non-root
+USER 1001
+
+# Ustawienie katalogu roboczego
+WORKDIR $ARTIFACTORY_HOME
+
+# Uruchomienie Artifactory
+ENTRYPOINT ["bin/artifactory.sh"]
+CMD ["console"]
