@@ -1,77 +1,81 @@
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 1 source file to /home/it.local/bainp/domain-prefix-ldap-mapper/target/classes
-[INFO] -------------------------------------------------------------
-[ERROR] COMPILATION ERROR :
-[INFO] -------------------------------------------------------------
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[83,16] cannot find symbol
-  symbol:   class List
-  location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[83,21] cannot find symbol
-  symbol:   class ProviderConfigProperty
-  location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[15,8] com.example.keycloak.ldap.DomainPrefixUsernameMapper is not abstract and does not override abstract method proxy(org.keycloak.storage.ldap.idm.model.LDAPObject,org.keycloak.models.UserModel,org.keycloak.models.RealmModel) in org.keycloak.storage.ldap.mappers.LDAPStorageMapper
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[23,5] method does not override or implement a method from a supertype
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[39,5] method does not override or implement a method from a supertype
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[53,5] method does not override or implement a method from a supertype
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[84,13] cannot find symbol
-  symbol:   class List
-  location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[84,18] cannot find symbol
-  symbol:   class ProviderConfigProperty
-  location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[84,65] cannot find symbol
-  symbol:   class ArrayList
-  location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[86,13] cannot find symbol
-  symbol:   class ProviderConfigProperty
-  location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[86,55] cannot find symbol
-  symbol:   class ProviderConfigProperty
-  location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[90,34] cannot find symbol
-  symbol:   variable ProviderConfigProperty
-  location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[INFO] 12 errors
-[INFO] -------------------------------------------------------------
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  30.585 s
-[INFO] Finished at: 2025-11-09T12:45:30+01:00
-[INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project domain-prefix-ldap-mapper: Compilation failure: Compilation failure:
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[83,16] cannot find symbol
-[ERROR]   symbol:   class List
-[ERROR]   location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[83,21] cannot find symbol
-[ERROR]   symbol:   class ProviderConfigProperty
-[ERROR]   location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[15,8] com.example.keycloak.ldap.DomainPrefixUsernameMapper is not abstract and does not override abstract method proxy(org.keycloak.storage.ldap.idm.model.LDAPObject,org.keycloak.models.UserModel,org.keycloak.models.RealmModel) in org.keycloak.storage.ldap.mappers.LDAPStorageMapper
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[23,5] method does not override or implement a method from a supertype
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[39,5] method does not override or implement a method from a supertype
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[53,5] method does not override or implement a method from a supertype
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[84,13] cannot find symbol
-[ERROR]   symbol:   class List
-[ERROR]   location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[84,18] cannot find symbol
-[ERROR]   symbol:   class ProviderConfigProperty
-[ERROR]   location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[84,65] cannot find symbol
-[ERROR]   symbol:   class ArrayList
-[ERROR]   location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[86,13] cannot find symbol
-[ERROR]   symbol:   class ProviderConfigProperty
-[ERROR]   location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[86,55] cannot find symbol
-[ERROR]   symbol:   class ProviderConfigProperty
-[ERROR]   location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] /home/it.local/bainp/domain-prefix-ldap-mapper/src/main/java/com/example/keycloak/ldap/DomainPrefixUsernameMapper.java:[90,34] cannot find symbol
-[ERROR]   symbol:   variable ProviderConfigProperty
-[ERROR]   location: class com.example.keycloak.ldap.DomainPrefixUsernameMapper.Factory
-[ERROR] -> [Help 1]
-[ERROR]
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR]
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+12:57:09,863 INFO  [org.keycloak.subsystem.server.extension.KeycloakProviderDeploymentProcessor] (MSC service thread 1-2) Deploying Keycloak provider: domain-prefix-ldap-mapper-1.0.0.jar
+12:57:09,876 WARN  [org.jboss.modules.define] (MSC service thread 1-2) Failed to define class com.example.keycloak.ldap.DomainPrefixUsernameMapper$Factory in Module "deployment.domain-prefix-ldap-mapper-1.0.0.jar" from Service Module Loader: java.lang.NoClassDefFoundError: Failed to link com/example/keycloak/ldap/DomainPrefixUsernameMapper$Factory (Module "deployment.domain-prefix-ldap-mapper-1.0.0.jar" from Service Module Loader): org/keycloak/storage/ldap/mappers/AbstractLDAPStorageMapperFactory
+        at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+        at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1022)
+        at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1101)
+        at org.jboss.modules.ModuleClassLoader.doDefineOrLoadClass(ModuleClassLoader.java:351)
+        at org.jboss.modules.ModuleClassLoader.defineClass(ModuleClassLoader.java:482)
+        at org.jboss.modules.ModuleClassLoader.loadClassLocal(ModuleClassLoader.java:276)
+        at org.jboss.modules.ModuleClassLoader$1.loadClassLocal(ModuleClassLoader.java:79)
+        at org.jboss.modules.Module.loadModuleClass(Module.java:765)
+        at org.jboss.modules.ModuleClassLoader.findClass(ModuleClassLoader.java:192)
+        at org.jboss.modules.ConcurrentClassLoader.performLoadClassUnchecked(ConcurrentClassLoader.java:410)
+        at org.jboss.modules.ConcurrentClassLoader.performLoadClass(ConcurrentClassLoader.java:398)
+        at org.jboss.modules.ConcurrentClassLoader.loadClass(ConcurrentClassLoader.java:116)
+        at java.base/java.lang.Class.forName0(Native Method)
+        at java.base/java.lang.Class.forName(Class.java:398)
+        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.nextProviderClass(ServiceLoader.java:1210)
+        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNextService(ServiceLoader.java:1221)
+        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNext(ServiceLoader.java:1265)
+        at java.base/java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1300)
+        at java.base/java.util.ServiceLoader$3.hasNext(ServiceLoader.java:1385)
+        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.DefaultProviderLoader.load(DefaultProviderLoader.java:60)
+        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.ProviderManager.load(ProviderManager.java:94)
+        at org.keycloak.keycloak-services@18.0.2//org.keycloak.services.DefaultKeycloakSessionFactory.loadFactories(DefaultKeycloakSessionFactory.java:294)
+        at org.keycloak.keycloak-services@18.0.2//org.keycloak.services.DefaultKeycloakSessionFactory.deploy(DefaultKeycloakSessionFactory.java:154)
+        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.ProviderManagerRegistry.deploy(ProviderManagerRegistry.java:42)
+        at org.keycloak.keycloak-wildfly-server-subsystem@18.0.2//org.keycloak.subsystem.server.extension.KeycloakProviderDeploymentProcessor.deploy(KeycloakProviderDeploymentProcessor.java:58)
+        at org.jboss.as.server@18.1.1.Final//org.jboss.as.server.deployment.DeploymentUnitPhaseService.start(DeploymentUnitPhaseService.java:182)
+        at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$StartTask.startService(ServiceControllerImpl.java:1739)
+        at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$StartTask.execute(ServiceControllerImpl.java:1701)
+        at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$ControllerTask.run(ServiceControllerImpl.java:1559)
+        at org.jboss.threads@2.4.0.Final//org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:1990)
+        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1486)
+        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1377)
+        at java.base/java.lang.Thread.run(Thread.java:829)
+
+12:57:09,877 ERROR [org.jboss.msc.service.fail] (MSC service thread 1-2) MSC000001: Failed to start service jboss.deployment.unit."domain-prefix-ldap-mapper-1.0.0.jar".POST_MODULE: org.jboss.msc.service.StartException in service jboss.deployment.unit."domain-prefix-ldap-mapper-1.0.0.jar".POST_MODULE: WFLYSRV0153: Failed to process phase POST_MODULE of deployment "domain-prefix-ldap-mapper-1.0.0.jar"
+        at org.jboss.as.server@18.1.1.Final//org.jboss.as.server.deployment.DeploymentUnitPhaseService.start(DeploymentUnitPhaseService.java:189)
+        at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$StartTask.startService(ServiceControllerImpl.java:1739)
+        at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$StartTask.execute(ServiceControllerImpl.java:1701)
+        at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$ControllerTask.run(ServiceControllerImpl.java:1559)
+        at org.jboss.threads@2.4.0.Final//org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:1990)
+        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1486)
+        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1377)
+        at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.lang.NoClassDefFoundError: Failed to link com/example/keycloak/ldap/DomainPrefixUsernameMapper$Factory (Module "deployment.domain-prefix-ldap-mapper-1.0.0.jar" from Service Module Loader): org/keycloak/storage/ldap/mappers/AbstractLDAPStorageMapperFactory
+        at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+        at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1022)
+        at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1101)
+        at org.jboss.modules.ModuleClassLoader.doDefineOrLoadClass(ModuleClassLoader.java:351)
+        at org.jboss.modules.ModuleClassLoader.defineClass(ModuleClassLoader.java:482)
+        at org.jboss.modules.ModuleClassLoader.loadClassLocal(ModuleClassLoader.java:276)
+        at org.jboss.modules.ModuleClassLoader$1.loadClassLocal(ModuleClassLoader.java:79)
+        at org.jboss.modules.Module.loadModuleClass(Module.java:765)
+        at org.jboss.modules.ModuleClassLoader.findClass(ModuleClassLoader.java:192)
+        at org.jboss.modules.ConcurrentClassLoader.performLoadClassUnchecked(ConcurrentClassLoader.java:410)
+        at org.jboss.modules.ConcurrentClassLoader.performLoadClass(ConcurrentClassLoader.java:398)
+        at org.jboss.modules.ConcurrentClassLoader.loadClass(ConcurrentClassLoader.java:116)
+        at java.base/java.lang.Class.forName0(Native Method)
+        at java.base/java.lang.Class.forName(Class.java:398)
+        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.nextProviderClass(ServiceLoader.java:1210)
+        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNextService(ServiceLoader.java:1221)
+        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNext(ServiceLoader.java:1265)
+        at java.base/java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1300)
+        at java.base/java.util.ServiceLoader$3.hasNext(ServiceLoader.java:1385)
+        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.DefaultProviderLoader.load(DefaultProviderLoader.java:60)
+        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.ProviderManager.load(ProviderManager.java:94)
+        at org.keycloak.keycloak-services@18.0.2//org.keycloak.services.DefaultKeycloakSessionFactory.loadFactories(DefaultKeycloakSessionFactory.java:294)
+        at org.keycloak.keycloak-services@18.0.2//org.keycloak.services.DefaultKeycloakSessionFactory.deploy(DefaultKeycloakSessionFactory.java:154)
+        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.ProviderManagerRegistry.deploy(ProviderManagerRegistry.java:42)
+        at org.keycloak.keycloak-wildfly-server-subsystem@18.0.2//org.keycloak.subsystem.server.extension.KeycloakProviderDeploymentProcessor.deploy(KeycloakProviderDeploymentProcessor.java:58)
+        at org.jboss.as.server@18.1.1.Final//org.jboss.as.server.deployment.DeploymentUnitPhaseService.start(DeploymentUnitPhaseService.java:182)
+        ... 8 more
+
+12:57:09,882 ERROR [org.jboss.as.controller.management-operation] (DeploymentScanner-threads - 2) WFLYCTL0013: Operation ("deploy") failed - address: ([("deployment" => "domain-prefix-ldap-mapper-1.0.0.jar")]) - failure description: {"WFLYCTL0080: Failed services" => {"jboss.deployment.unit.\"domain-prefix-ldap-mapper-1.0.0.jar\".POST_MODULE" => "WFLYSRV0153: Failed to process phase POST_MODULE of deployment \"domain-prefix-ldap-mapper-1.0.0.jar\"
+    Caused by: java.lang.NoClassDefFoundError: Failed to link com/example/keycloak/ldap/DomainPrefixUsernameMapper$Factory (Module \"deployment.domain-prefix-ldap-mapper-1.0.0.jar\" from Service Module Loader): org/keycloak/storage/ldap/mappers/AbstractLDAPStorageMapperFactory"}}
+12:57:10,414 INFO  [org.jboss.as.server] (DeploymentScanner-threads - 2) WFLYSRV0010: Deployed "domain-prefix-ldap-mapper-1.0.0.jar" (runtime-name : "domain-prefix-ldap-mapper-1.0.0.jar")
+12:57:10,415 INFO  [org.jboss.as.controller] (DeploymentScanner-threads - 2) WFLYCTL0183: Service status report
+WFLYCTL0186:   Services which failed to start:      service jboss.deployment.unit."domain-prefix-ldap-mapper-1.0.0.jar".POST_MODULE: WFLYSRV0153: Failed to process phase POST_MODULE of deployment "domain-prefix-ldap-mapper-1.0.0.jar"
