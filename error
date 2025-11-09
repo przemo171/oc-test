@@ -1,81 +1,27 @@
-12:57:09,863 INFO  [org.keycloak.subsystem.server.extension.KeycloakProviderDeploymentProcessor] (MSC service thread 1-2) Deploying Keycloak provider: domain-prefix-ldap-mapper-1.0.0.jar
-12:57:09,876 WARN  [org.jboss.modules.define] (MSC service thread 1-2) Failed to define class com.example.keycloak.ldap.DomainPrefixUsernameMapper$Factory in Module "deployment.domain-prefix-ldap-mapper-1.0.0.jar" from Service Module Loader: java.lang.NoClassDefFoundError: Failed to link com/example/keycloak/ldap/DomainPrefixUsernameMapper$Factory (Module "deployment.domain-prefix-ldap-mapper-1.0.0.jar" from Service Module Loader): org/keycloak/storage/ldap/mappers/AbstractLDAPStorageMapperFactory
-        at java.base/java.lang.ClassLoader.defineClass1(Native Method)
-        at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1022)
-        at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1101)
-        at org.jboss.modules.ModuleClassLoader.doDefineOrLoadClass(ModuleClassLoader.java:351)
-        at org.jboss.modules.ModuleClassLoader.defineClass(ModuleClassLoader.java:482)
-        at org.jboss.modules.ModuleClassLoader.loadClassLocal(ModuleClassLoader.java:276)
-        at org.jboss.modules.ModuleClassLoader$1.loadClassLocal(ModuleClassLoader.java:79)
-        at org.jboss.modules.Module.loadModuleClass(Module.java:765)
-        at org.jboss.modules.ModuleClassLoader.findClass(ModuleClassLoader.java:192)
-        at org.jboss.modules.ConcurrentClassLoader.performLoadClassUnchecked(ConcurrentClassLoader.java:410)
-        at org.jboss.modules.ConcurrentClassLoader.performLoadClass(ConcurrentClassLoader.java:398)
-        at org.jboss.modules.ConcurrentClassLoader.loadClass(ConcurrentClassLoader.java:116)
-        at java.base/java.lang.Class.forName0(Native Method)
-        at java.base/java.lang.Class.forName(Class.java:398)
-        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.nextProviderClass(ServiceLoader.java:1210)
-        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNextService(ServiceLoader.java:1221)
-        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNext(ServiceLoader.java:1265)
-        at java.base/java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1300)
-        at java.base/java.util.ServiceLoader$3.hasNext(ServiceLoader.java:1385)
-        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.DefaultProviderLoader.load(DefaultProviderLoader.java:60)
-        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.ProviderManager.load(ProviderManager.java:94)
-        at org.keycloak.keycloak-services@18.0.2//org.keycloak.services.DefaultKeycloakSessionFactory.loadFactories(DefaultKeycloakSessionFactory.java:294)
-        at org.keycloak.keycloak-services@18.0.2//org.keycloak.services.DefaultKeycloakSessionFactory.deploy(DefaultKeycloakSessionFactory.java:154)
-        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.ProviderManagerRegistry.deploy(ProviderManagerRegistry.java:42)
-        at org.keycloak.keycloak-wildfly-server-subsystem@18.0.2//org.keycloak.subsystem.server.extension.KeycloakProviderDeploymentProcessor.deploy(KeycloakProviderDeploymentProcessor.java:58)
-        at org.jboss.as.server@18.1.1.Final//org.jboss.as.server.deployment.DeploymentUnitPhaseService.start(DeploymentUnitPhaseService.java:182)
+13:10:41,049 INFO  [org.jboss.as.repository] (DeploymentScanner-threads - 2) WFLYDR0001: Content added at location /opt/keycloak-18.0.2/standalone/data/content/52/d0f14d6aefaaf8439cd541ee4ac54bd695a401/content
+13:10:41,060 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-2) WFLYSRV0028: Stopped deployment domain-prefix-ldap-mapper-1.0.0.jar (runtime-name: domain-prefix-ldap-mapper-1.0.0.jar) in 6ms
+13:10:41,062 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-1) WFLYSRV0027: Starting deployment of "domain-prefix-ldap-mapper-1.0.0.jar" (runtime-name: "domain-prefix-ldap-mapper-1.0.0.jar")
+13:10:41,145 ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.module.service."deployment.domain-prefix-ldap-mapper-1.0.0.jar".main: org.jboss.msc.service.StartException in service jboss.module.service."deployment.domain-prefix-ldap-mapper-1.0.0.jar".main: WFLYSRV0179: Failed to load module: deployment.domain-prefix-ldap-mapper-1.0.0.jar
+        at org.jboss.as.server@18.1.1.Final//org.jboss.as.server.moduleservice.ModuleLoadService.start(ModuleLoadService.java:116)
         at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$StartTask.startService(ServiceControllerImpl.java:1739)
         at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$StartTask.execute(ServiceControllerImpl.java:1701)
         at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$ControllerTask.run(ServiceControllerImpl.java:1559)
         at org.jboss.threads@2.4.0.Final//org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
         at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:1990)
         at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1486)
-        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1377)
+        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1363)
         at java.base/java.lang.Thread.run(Thread.java:829)
-
-12:57:09,877 ERROR [org.jboss.msc.service.fail] (MSC service thread 1-2) MSC000001: Failed to start service jboss.deployment.unit."domain-prefix-ldap-mapper-1.0.0.jar".POST_MODULE: org.jboss.msc.service.StartException in service jboss.deployment.unit."domain-prefix-ldap-mapper-1.0.0.jar".POST_MODULE: WFLYSRV0153: Failed to process phase POST_MODULE of deployment "domain-prefix-ldap-mapper-1.0.0.jar"
-        at org.jboss.as.server@18.1.1.Final//org.jboss.as.server.deployment.DeploymentUnitPhaseService.start(DeploymentUnitPhaseService.java:189)
-        at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$StartTask.startService(ServiceControllerImpl.java:1739)
-        at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$StartTask.execute(ServiceControllerImpl.java:1701)
-        at org.jboss.msc@1.4.13.Final//org.jboss.msc.service.ServiceControllerImpl$ControllerTask.run(ServiceControllerImpl.java:1559)
-        at org.jboss.threads@2.4.0.Final//org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
-        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:1990)
-        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1486)
-        at org.jboss.threads@2.4.0.Final//org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1377)
-        at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: java.lang.NoClassDefFoundError: Failed to link com/example/keycloak/ldap/DomainPrefixUsernameMapper$Factory (Module "deployment.domain-prefix-ldap-mapper-1.0.0.jar" from Service Module Loader): org/keycloak/storage/ldap/mappers/AbstractLDAPStorageMapperFactory
-        at java.base/java.lang.ClassLoader.defineClass1(Native Method)
-        at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1022)
-        at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1101)
-        at org.jboss.modules.ModuleClassLoader.doDefineOrLoadClass(ModuleClassLoader.java:351)
-        at org.jboss.modules.ModuleClassLoader.defineClass(ModuleClassLoader.java:482)
-        at org.jboss.modules.ModuleClassLoader.loadClassLocal(ModuleClassLoader.java:276)
-        at org.jboss.modules.ModuleClassLoader$1.loadClassLocal(ModuleClassLoader.java:79)
-        at org.jboss.modules.Module.loadModuleClass(Module.java:765)
-        at org.jboss.modules.ModuleClassLoader.findClass(ModuleClassLoader.java:192)
-        at org.jboss.modules.ConcurrentClassLoader.performLoadClassUnchecked(ConcurrentClassLoader.java:410)
-        at org.jboss.modules.ConcurrentClassLoader.performLoadClass(ConcurrentClassLoader.java:398)
-        at org.jboss.modules.ConcurrentClassLoader.loadClass(ConcurrentClassLoader.java:116)
-        at java.base/java.lang.Class.forName0(Native Method)
-        at java.base/java.lang.Class.forName(Class.java:398)
-        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.nextProviderClass(ServiceLoader.java:1210)
-        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNextService(ServiceLoader.java:1221)
-        at java.base/java.util.ServiceLoader$LazyClassPathLookupIterator.hasNext(ServiceLoader.java:1265)
-        at java.base/java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1300)
-        at java.base/java.util.ServiceLoader$3.hasNext(ServiceLoader.java:1385)
-        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.DefaultProviderLoader.load(DefaultProviderLoader.java:60)
-        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.ProviderManager.load(ProviderManager.java:94)
-        at org.keycloak.keycloak-services@18.0.2//org.keycloak.services.DefaultKeycloakSessionFactory.loadFactories(DefaultKeycloakSessionFactory.java:294)
-        at org.keycloak.keycloak-services@18.0.2//org.keycloak.services.DefaultKeycloakSessionFactory.deploy(DefaultKeycloakSessionFactory.java:154)
-        at org.keycloak.keycloak-services@18.0.2//org.keycloak.provider.ProviderManagerRegistry.deploy(ProviderManagerRegistry.java:42)
-        at org.keycloak.keycloak-wildfly-server-subsystem@18.0.2//org.keycloak.subsystem.server.extension.KeycloakProviderDeploymentProcessor.deploy(KeycloakProviderDeploymentProcessor.java:58)
-        at org.jboss.as.server@18.1.1.Final//org.jboss.as.server.deployment.DeploymentUnitPhaseService.start(DeploymentUnitPhaseService.java:182)
+Caused by: org.jboss.modules.ModuleNotFoundException: org.keycloak.keycloak-model-legacy
+        at org.jboss.modules.Module.addPaths(Module.java:1271)
+        at org.jboss.modules.Module.link(Module.java:1627)
+        at org.jboss.modules.Module.relinkIfNecessary(Module.java:1655)
+        at org.jboss.modules.ModuleLoader.loadModule(ModuleLoader.java:303)
+        at org.jboss.modules.ModuleLoader.loadModule(ModuleLoader.java:287)
+        at org.jboss.as.server@18.1.1.Final//org.jboss.as.server.moduleservice.ModuleLoadService.start(ModuleLoadService.java:93)
         ... 8 more
 
-12:57:09,882 ERROR [org.jboss.as.controller.management-operation] (DeploymentScanner-threads - 2) WFLYCTL0013: Operation ("deploy") failed - address: ([("deployment" => "domain-prefix-ldap-mapper-1.0.0.jar")]) - failure description: {"WFLYCTL0080: Failed services" => {"jboss.deployment.unit.\"domain-prefix-ldap-mapper-1.0.0.jar\".POST_MODULE" => "WFLYSRV0153: Failed to process phase POST_MODULE of deployment \"domain-prefix-ldap-mapper-1.0.0.jar\"
-    Caused by: java.lang.NoClassDefFoundError: Failed to link com/example/keycloak/ldap/DomainPrefixUsernameMapper$Factory (Module \"deployment.domain-prefix-ldap-mapper-1.0.0.jar\" from Service Module Loader): org/keycloak/storage/ldap/mappers/AbstractLDAPStorageMapperFactory"}}
-12:57:10,414 INFO  [org.jboss.as.server] (DeploymentScanner-threads - 2) WFLYSRV0010: Deployed "domain-prefix-ldap-mapper-1.0.0.jar" (runtime-name : "domain-prefix-ldap-mapper-1.0.0.jar")
-12:57:10,415 INFO  [org.jboss.as.controller] (DeploymentScanner-threads - 2) WFLYCTL0183: Service status report
-WFLYCTL0186:   Services which failed to start:      service jboss.deployment.unit."domain-prefix-ldap-mapper-1.0.0.jar".POST_MODULE: WFLYSRV0153: Failed to process phase POST_MODULE of deployment "domain-prefix-ldap-mapper-1.0.0.jar"
+13:10:41,149 ERROR [org.jboss.as.controller.management-operation] (DeploymentScanner-threads - 2) WFLYCTL0013: Operation ("full-replace-deployment") failed - address: ([]) - failure description: {"WFLYCTL0080: Failed services" => {"jboss.module.service.\"deployment.domain-prefix-ldap-mapper-1.0.0.jar\".main" => "WFLYSRV0179: Failed to load module: deployment.domain-prefix-ldap-mapper-1.0.0.jar
+    Caused by: org.jboss.modules.ModuleNotFoundException: org.keycloak.keycloak-model-legacy"}}
+13:10:41,236 INFO  [org.jboss.as.server] (DeploymentScanner-threads - 2) WFLYSRV0016: Replaced deployment "domain-prefix-ldap-mapper-1.0.0.jar" with deployment "domain-prefix-ldap-mapper-1.0.0.jar"
+13:10:41,236 INFO  [org.jboss.as.controller] (DeploymentScanner-threads - 2) WFLYCTL0183: Service status report
+WFLYCTL0186:   Services which failed to start:      service jboss.module.service."deployment.domain-prefix-ldap-mapper-1.0.0.jar".main: WFLYSRV0179: Failed to load module: deployment.domain-prefix-ldap-mapper-1.0.0.jar
