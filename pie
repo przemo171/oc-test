@@ -1,0 +1,95 @@
+cat > teams_payload.json << EOF
+{
+  "type": "message",
+  "attachments": [{
+    "contentType": "application/vnd.microsoft.card.adaptive",
+    "content": {
+      "type": "AdaptiveCard",
+      "version": "1.4",
+      "body": [
+        {
+          "type": "TextBlock",
+          "size": "Large",
+          "weight": "Bolder",
+          "color": "Accent",
+          "text": "✅ **Base Image Approved**"
+        },
+        {
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "Container",
+          "style": "emphasis",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [{"type": "TextBlock", "weight": "Bolder", "text": "📸 Image:", "wrap": true}]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [{"type": "TextBlock", "text": "$IMAGE_NAME", "wrap": true}]
+                }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [{"type": "TextBlock", "weight": "Bolder", "text": "✅ Approved Tag:", "wrap": true}]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [{"type": "TextBlock", "text": "$APPROVED", "wrap": true}]
+                }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [{"type": "TextBlock", "weight": "Bolder", "text": "🔐 Digest:", "wrap": true}]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [{"type": "TextBlock", "spacing": "Small", "text": "\`$DIGEST\`", "wrap": true}]
+                }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [{"type": "TextBlock", "weight": "Bolder", "text": "🔗 Pipeline:", "wrap": true}]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [{"type": "TextBlock", "text": "#$CI_PIPELINE_ID", "wrap": true}]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "type": "Action.OpenUrl",
+          "title": "🢁 View Pipeline",
+          "url": "https://gitlab.com/your-group/your-project/-/pipelines/$CI_PIPELINE_ID"
+        }
+      ]
+    }
+  }]
+}
+EOF
