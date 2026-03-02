@@ -1,0 +1,181 @@
+stages:
+  - check
+  - rebuild-war
+  - oc-build
+  - rollout
+  - notify
+
+variables:
+  OPENSHIFT_PROJECT: "my-namespace"
+  APP_NAME: "my-app"
+  BASE_IMAGE_FILE: "last_base_image.txt"
+  NIGHT_WINDOW_START: "02:00"
+  NIGHT_WINDOW_END: "04:00"
+  ARTIFACTORY_URL: "https://my-artifactory.example.com/artifactory"
+  ARTIFACTORY_REPO: "apps-release"
+  WAR_NAME: "myapp.war"
+  CVE_THRESHOLD: 7.0
+  XRAY_URL: "https://my-xray.example.com"
+  XRAY_USER: "$XRAY_USER"
+  XRAY_PASS: "$XRAY_PASS"
+  SLACK_WEBHOOK_URL: "$SLACK_WEBHOOK_URL"
+
+# ------------------------------
+# 1️⃣ Check night window & read base image
+# ------------------------------
+check:
+  stage: check
+  image: alpine:latest
+  script:
+    - CURRENT_TIME=$(date +%H:%M)
+    - if [[ "$CURRENT_TIME" < "$NIGHT_WINDOW_START" || "$CURRENT_TIME" > "$NIGHT_WINDOW_END" ]]; then
+        echo "Outside night window, skipping pipeline"; exit 0;
+      fi
+    - if [[ ! -f "$BASE_IMAGE_FILE" ]]; then
+        echo "No approved base image found, aborting"; exit 1;
+      fi
+    - TAG=$(grep TAG $BASE_IMAGE_FILE | cut -d= -f2)
+    - DIGEST=$(grep DIGEST $BASE_IMAGE_FILE | cut -d= -f2)
+    - echo "Approved base image: $TAG"
+  artifacts:
+    paths:
+      - base_image_tag.txt
+  before_script:
+    - TAG=$(grep TAG $BASE_IMAGE_FILE | cut -d= -f2)
+    - echo $TAG > base_image_tag.txt
+
+# ------------------------------
+# 2️⃣ Rebuild WAR if changed
+# ------------------------------
+rebuild-war:
+  stage: rebuild-war
+  image: your-build-image:latest
+  dependencies:
+    - check
+  script:
+    - TAG=$(cat base_image_tag.txt)
+    - echo "Building WAR for base image: $TAG"
+    - mvn clean package -DskipTests
+    - LOCAL_HASH=$(sha256sum target/$WAR_NAME | awk '{print $1}')
+    - REMOTE_HASH=$(curl -s -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS \
+        "$ARTIFACTORY_URL/$ARTIFACTORY_REPO/$WAR_NAME" | sha256sum | awk '{print $1}' || echo "")
+    - WAR_CHANGED=false
+    - if [[ "$LOCAL_HASH" != "$REMOTE_HASH" ]]; then
+        echo "WAR changed, pushing to Artifactory..."
+        curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -T target/$WAR_NAME $ARTIFACTORY_URL/$ARTIFACTORY_REPO/$WAR_NAME
+        WAR_CHANGED=true
+      fi
+    - echo $WAR_CHANGED > war_changed.txt
+  artifacts:
+    paths:
+      - war_changed.txt
+      - base_image_tag.txt
+
+# ------------------------------
+# 3️⃣ CVE Check for base image
+# ------------------------------
+cve-check:
+  stage: oc-build
+  image: curlimages/curl:latest
+  dependencies:
+    - rebuild-war
+  script:
+    - TAG=$(cat base_image_tag.txt)
+    - echo "Checking CVE for base image $TAG in Xray..."
+    - RESPONSE=$(curl -s -u $XRAY_USER:$XRAY_PASS -X POST "$XRAY_URL/api/v1/scan/image?image=$TAG")
+    - MAX_CVE=$(echo $RESPONSE | jq '.summary.maxSeverityScore')
+    - echo "Max CVE severity: $MAX_CVE"
+    - |
+      if (( $(echo "$MAX_CVE > $CVE_THRESHOLD" | bc -l) )); then
+        echo "CVE threshold exceeded, blocking rollout"
+        exit 1
+      else
+        echo "CVE check passed"
+      fi
+
+# ------------------------------
+# 4️⃣ OpenShift build
+# ------------------------------
+oc-build:
+  stage: oc-build
+  image: your-build-image:latest
+  dependencies:
+    - cve-check
+  script:
+    - TAG=$(cat base_image_tag.txt)
+    - WAR_CHANGED=$(cat war_changed.txt)
+    - |
+      if [[ "$WAR_CHANGED" == "true" || "$TAG" != "" ]]; then
+        echo "Starting OpenShift build..."
+        oc login --token=$OPENSHIFT_TOKEN --server=$OPENSHIFT_SERVER
+        oc project $OPENSHIFT_PROJECT
+        oc start-build $APP_NAME --from-file=target/$WAR_NAME --wait
+      else
+        echo "No changes in WAR or base image, skipping build."
+      fi
+
+# ------------------------------
+# 5️⃣ Rollout deployment
+# ------------------------------
+rollout:
+  stage: rollout
+  image: your-build-image:latest
+  dependencies:
+    - oc-build
+  script:
+    - TAG=$(cat base_image_tag.txt)
+    - WAR_CHANGED=$(cat war_changed.txt)
+    - CURRENT_TIME=$(date +%H:%M)
+    - |
+      if [[ "$CURRENT_TIME" > "$NIGHT_WINDOW_START" && "$CURRENT_TIME" < "$NIGHT_WINDOW_END" && ( "$WAR_CHANGED" == "true" || "$TAG" != "" ) ]]; then
+        echo "Rolling out deployment..."
+        oc login --token=$OPENSHIFT_TOKEN --server=$OPENSHIFT_SERVER
+        oc project $OPENSHIFT_PROJECT
+        oc rollout latest deployment/$APP_NAME
+        oc rollout status deployment/$APP_NAME --timeout=600s
+      else
+        echo "No rollout needed."
+      fi
+
+# ------------------------------
+# 6️⃣ Notify
+# ------------------------------
+notify:
+  stage: notify
+  image: curlimages/curl:latest
+  dependencies:
+    - rollout
+  script:
+    - TAG=$(cat base_image_tag.txt)
+    - WAR_CHANGED=$(cat war_changed.txt)
+    - |
+      if [[ "$WAR_CHANGED" == "true" || "$TAG" != "" ]]; then
+        curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"Nightly rollout completed for '$APP_NAME' using base image '$TAG'"}' \
+          $SLACK_WEBHOOK_URL
+      else
+        curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"Nightly rollout skipped (blocked by CVE check or no changes) for '$APP_NAME'"}' \
+          $SLACK_WEBHOOK_URL
+
+
+-----------------------------------------------------------------
+
+
+notify:
+  stage: notify
+  image: curlimages/curl:latest
+  dependencies:
+    - rollout
+  script:
+    - TAG=$(cat base_image_tag.txt)
+    - WAR_CHANGED=$(cat war_changed.txt)
+    - |
+      if [[ "$WAR_CHANGED" == "true" || "$TAG" != "" ]]; then
+        MESSAGE="Nightly rollout completed for $APP_NAME using base image $TAG"
+      else
+        MESSAGE="Nightly rollout skipped (blocked by CVE check or no changes) for $APP_NAME"
+      fi
+    - curl -H "Content-Type: application/json" \
+           -d "{\"text\": \"$MESSAGE\"}" \
+           $TEAMS_WEBHOOK_URL
