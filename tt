@@ -1,0 +1,21 @@
+Hi Maurizio,
+
+We’re sorry to hear about the issues you’re experiencing when trying to log in to https://strona.moja.com
+. However, it’s difficult for us to identify a problem on our side, as you are the only ones encountering this issue.
+
+The problem may be related to a change in the address to which the user’s authentication certificate is sent. Previously, this was https://strona.moja.com
+. Now it is https://keycloak.moj
+. Below is a shortened version of the login flow:
+
+The user opens https://strona.moja.com
+ and is then redirected to https://keycloak.moj
+, where they are prompted to provide a certificate. If there is no certificate issued by our CA in the certificate store, the user is redirected to https://login.gov.pl
+, where they can log in via the national node—however, as far as I know, this is currently not supported on your side.
+
+If the user selects a certificate that is assigned to them in the portal, they are redirected back to https://strona.moja.com
+. That’s the full flow.
+
+It therefore seems that either the user experiencing the issue does not have a certificate in their certificate store, or the certificate is not being passed to https://keycloak.moj
+. The only thing that comes to mind is that your security settings may be configured in such a way that, in our case, the certificate can only be sent to https://strona.moja.com
+. However, the recipient of the certificate has changed, and it now needs to be sent to https://keycloak.moj
+.
