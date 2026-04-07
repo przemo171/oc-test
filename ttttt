@@ -1,66 +1,69 @@
-2026-04-07T09:59:56.159Z [jfrou] [INFO ] [6655be3ec747c37a] [environment.go:63             ] [main                ] [] - MemoryLimit set to 0 (ratio: 0.90)
-2026-04-07T09:59:56.159Z [jfrou] [INFO ] [6655be3ec747c37a] [bootstrap.go:98               ] [main                ] [] - JFrog Router Service ID: jfrou@01knkp4tfzy90q57ra1ncg6mq2
-2026-04-07T09:59:56.159Z [jfrou] [INFO ] [6655be3ec747c37a] [bootstrap.go:99               ] [main                ] [] - JFrog Router Node ID: xray-rhel10-one
-2026-04-07T09:59:56.175Z [jfxps] [WARN ] [edd4ab3e6a69cfe8] [ha_dao:179                    ] [MainPersist                     ] Couldn't find node xray-rhel10-one: not found
-2026-04-07T09:59:56.175Z [jfxps] [INFO ] [edd4ab3e6a69cfe8] [run_main:163                  ] [MainPersist                     ] Waiting 4s before checking for xray server status again
-2026-04-07T09:59:56.183Z [jfrou] [INFO ] [6655be3ec747c37a] [trusted.go:36                 ] [main                ] [] - System cert pool contents were loaded as trusted CAs for TLS communication
-2026-04-07T09:59:56.183Z [jfrou] [INFO ] [6655be3ec747c37a] [trusted.go:58                 ] [main                ] [] - No certificate to be loaded as trusted CAs found in []
-2026-04-07T09:59:56.183Z [jfrou] [INFO ] [6655be3ec747c37a] [trusted.go:36                 ] [main                ] [] - System cert pool contents were loaded as trusted CAs for TLS communication
-2026-04-07T09:59:56.183Z [jfrou] [INFO ] [6655be3ec747c37a] [trusted.go:58                 ] [main                ] [] - No certificate to be loaded as trusted CAs found in []
-2026-04-07T09:59:56.202Z [shell] [INFO ] [] [installerCommon.sh:3606       ] [main] - Found explicit shared.node.ip in system.yaml with value : 127.0.0.1
-2026-04-07T09:59:56.259Z [shell] [INFO ] [] [installerCommon.sh:3601       ] [main] - Setting JF_SHARED_NODE_NAME to xray-app
-2026-04-07T09:59:56.343Z [jfrou] [INFO ] [6655be3ec747c37a] [join_executor.go:116          ] [main                ] [] - Cluster join: Trying to rejoin the cluster http://jfrog.example.com:8082/access
-2026-04-07T09:59:56.403Z [jfrou] [FATAL] [6655be3ec747c37a] [single_tenant_services_holder.go:43] [main                ] [] - Failed joining Access: could not join Access: cluster join: Failed joining the cluster; Error: Error response from service registry, status code: 400; message: Service ID mismatch; detail: Conflicting check-url/join-request service ids; Check url: "http://127.0.0.1:8082/router/api/v1/system/ping" check-url service id: "jfrou@01hprk2zqdxcks436nfdxb5v3p", join-request service id: "jfrou@01knkp4tfzy90q57ra1ncg6mq2"
-2026-04-07T09:59:56.467Z [jfxpe] [INFO ] [7d497ff939c33492] [migrate:360                   ] [MainPolicyEnforcer              ] Skipped running migrations
-2026-04-07T09:59:56.468Z [jfxpe] [INFO ] [7d497ff939c33492] [migrate:360                   ] [MainPolicyEnforcer              ] Skipped running migrations
-2026-04-07T09:59:56.470Z [jfxpe] [WARN ] [7d497ff939c33492] [ha_dao:179                    ] [MainPolicyEnforcer              ] Couldn't find node xray-rhel10-one: not found
-2026-04-07T09:59:56.470Z [jfxpe] [INFO ] [7d497ff939c33492] [run_main:163                  ] [MainPolicyEnforcer              ] Waiting 1s before checking for xray server status again
-2026-04-07T09:59:56.665Z [jfxsb] [WARN ] [fc92ec26d237016b] [ha_dao:179                    ] [MainSbom                        ] Couldn't find node xray-rhel10-one: not found
-2026-04-07T09:59:56.665Z [jfxsb] [INFO ] [fc92ec26d237016b] [run_main:163                  ] [MainSbom                        ] Waiting 2s before checking for xray server status again
-2026/04/07 11:59:56 maxprocs: Leaving GOMAXPROCS=8: CPU quota undefined
-2026-04-07T09:59:56.883Z [jfob] [INFO ] [4c8574b5c37ba8f8] [bootstrap.go:40               ] [main                ] - JFrog Observability (jfob) service initialization started. Version: 2.31.0 (revision: 8ee2d1688a, build date: 2026-03-18T06:12:54Z) PID: 1169234 Home: /opt/jfrog/xray
-2026-04-07T09:59:56.883Z [jfob] [DEBUG] [                ] [file_resolver.go:92           ] [main                ] - Resolved system configuration file path: /opt/jfrog/xray/var/etc/system.yaml
-2026/04/07 11:59:56 Interval log rotation should not be zero or a negative integer. Provided : 0. Log rotation interval has been set to 24 hours
-2026/04/07 11:59:56 Interval log rotation should not be zero or a negative integer. Provided : 0. Log rotation interval has been set to 24 hours
-2026/04/07 11:59:56 Interval log rotation should not be zero or a negative integer. Provided : 0. Log rotation interval has been set to 24 hours
-2026/04/07 11:59:56 Interval log rotation should not be zero or a negative integer. Provided : 0. Log rotation interval has been set to 24 hours
-2026/04/07 11:59:56 Interval log rotation should not be zero or a negative integer. Provided : 0. Log rotation interval has been set to 24 hours
-2026-04-07T09:59:56.885Z [jfob ] [INFO ] [4c8574b5c37ba8f8] [bootstrap.go:268              ] [main                ] - Resolving service Id... [startup] [spanId][4c8574b5c37ba8f8] [spanTraceId][4c8574b5c37ba8f8]
-2026-04-07T09:59:57.031Z [jfxan] [WARN ] [57795673f5c62834] [ha_dao:179                    ] [MainAnalysis                    ] Couldn't find node xray-rhel10-one: not found
-2026-04-07T09:59:57.031Z [jfxan] [INFO ] [57795673f5c62834] [run_main:163                  ] [MainAnalysis                    ] Waiting 4s before checking for xray server status again
-2026-04-07T09:59:57.472Z [jfxpe] [WARN ] [7d497ff939c33492] [ha_dao:179                    ] [MainPolicyEnforcer              ] Couldn't find node xray-rhel10-one: not found
-2026-04-07T09:59:57.472Z [jfxpe] [INFO ] [7d497ff939c33492] [run_main:163                  ] [MainPolicyEnforcer              ] Waiting 2s before checking for xray server status again
-2026-04-07T09:59:57.843Z [jfxid] [WARN ] [6f207cc24acdee34] [ha_dao:179                    ] [MainIndexer                     ] Couldn't find node xray-rhel10-one: not found
-2026-04-07T09:59:57.843Z [jfxid] [INFO ] [6f207cc24acdee34] [run_main:163                  ] [MainIndexer                     ] Waiting 4s before checking for xray server status again
-2026-04-07T09:59:58.667Z [jfxsb] [WARN ] [fc92ec26d237016b] [ha_dao:179                    ] [MainSbom                        ] Couldn't find node xray-rhel10-one: not found
-2026-04-07T09:59:58.667Z [jfxsb] [INFO ] [fc92ec26d237016b] [run_main:163                  ] [MainSbom                        ] Waiting 4s before checking for xray server status again
-2026-04-07T09:59:59.474Z [jfxpe] [WARN ] [7d497ff939c33492] [ha_dao:179                    ] [MainPolicyEnforcer              ] Couldn't find node xray-rhel10-one: not found
-2026-04-07T09:59:59.474Z [jfxpe] [INFO ] [7d497ff939c33492] [run_main:163                  ] [MainPolicyEnforcer              ] Waiting 4s before checking for xray server status again
-2026-04-07T10:00:00.177Z [jfxps] [WARN ] [edd4ab3e6a69cfe8] [ha_dao:179                    ] [MainPersist                     ] Couldn't find node xray-rhel10-one: not found
-2026-04-07T10:00:00.177Z [jfxps] [INFO ] [edd4ab3e6a69cfe8] [run_main:163                  ] [MainPersist                     ] Waiting 8s before checking for xray server status again
-2026-04-07T10:00:00.348Z [jfxr ] [INFO ] [ba186e7959b8926e] [access_client_bootstrap:243   ] [MainServer                      ] (--wrapper--)Cluster join: Retry 10: Service registry join failed, will retry. Error: cluster join: Failed joining the cluster; Error: error while trying to connect to local router at address: Post "http://localhost:8046/access/api/v1/registry/join": dial tcp 127.0.0.1:8046: connect: connection refused
+2026-04-07T10:16:25.370Z [jfxr ] [INFO ] [                ] [adapter:33                    ] [UnnamedContext                  ] SBOM BackgroundMigration: Starting background migration: ArtifactsCleanup
+2026-04-07T10:16:25.373Z [jfxr ] [ERROR] [                ] [adapter:39                    ] [BackgroundContext               ] Failed getting saved metrics from db: Failed getting metrics from db
+ --- at /go/pkg/mod/jfrog.com/xray-sbom@v1.69.13/internal/common/metrics/metrics.go:79 (fromDB) ---
+Caused by: ERROR: relation "sbom.metrics" does not exist (SQLSTATE 42P01)
+2026-04-07T10:16:25.374Z [jfxr ] [ERROR] [                ] [adapter:39                    ] [UnnamedContext                  ] SBOM BackgroundMigration: Failed running migration ArtifactsCleanup: Failed to create migration row for ArtifactsCleanup
+ --- at /go/pkg/mod/jfrog.com/xray-sbom@v1.69.13/internal/common/db/migration/bg_migration/driver.go:105 (Driver.runMigration) ---
+Caused by: SBOM BackgroundMigration: Failed to retrieve migration row for ArtifactsCleanup
+ --- at /go/pkg/mod/jfrog.com/xray-sbom@v1.69.13/internal/common/db/migration/bg_migration/driver.go:192 (Driver.getMigrationRow) ---
+Caused by: ERROR: relation "sbom.background_migrations" does not exist (SQLSTATE 42P01)
+2026-04-07T10:16:25.374Z [jfxr ] [ERROR] [b50c213be6eca6c7] [samplers:58                   ] [MainServer                      ] RabbitMQ keep alive failed, error: healthcheck connection is nil, RabbitMQ may be unavailable
+ --- at /go/src/jfrog.com/xray/xray/backend/backend/xqueue/connector/mq_connector.go:140 (mqConnectionManager.Ping) ---
+2026-04-07T10:16:25.374Z [jfxr ] [WARN ] [b50c213be6eca6c7] [health_checker:190            ] [MainServer                      ] RabbitMQ Error: No connection to RabbitMQ, test took 0ms
+2026-04-07T10:16:25.374Z [jfxr ] [INFO ] [                ] [health_checker:80             ] [UnnamedContext                  ] HealthChecker is starting up...
+2026-04-07T10:16:25.375Z [jfxr ] [WARN ] [b50c213be6eca6c7] [execution_service:106         ] [MainServer                      ] Execution service type is not available, returning Null execution service
+2026-04-07T10:16:25.375Z [jfxr ] [INFO ] [                ] [global_chaches_config:131     ] [BackgroundContext               ] Global cache PublicElfFilenames size was not specified. Using default of 10000.
+2026-04-07T10:16:25.375Z [jfxr ] [INFO ] [                ] [global_chaches_config:150     ] [BackgroundContext               ] Global cache PublicElfFilenames expiry was not specified. Will use default of 1m0s
+2026-04-07T10:16:25.376Z [jfxr ] [ERROR] [                ] [github_grpc_client:361        ] [BackgroundContext               ] (--wrapper--)tenantId is not a string
+2026-04-07T10:16:25.376Z [jfxr ] [INFO ] [                ] [github_grpc_client:142        ] [BackgroundContext               ] Successfully created GitHub gRPC client with target: localhost:8046
+2026-04-07T10:16:25.377Z [jfxr ] [ERROR] [                ] [bin_mgr_cache:54              ] [BackgroundContext               ] Failed to get binary manager id:failed on GetAllBinaryManagerIds query
+ --- at /go/src/jfrog.com/xray/xray/backend/backend/dbaccess/dao/binary_managers_dao.go:581 (binMgrDao.GetBinaryManagerId) ---
+Caused by: not found
+2026-04-07T10:16:25.377Z [jfxr ] [INFO ] [b50c213be6eca6c7] [catalog:164                   ] [MainServer                      ] initializing catalog routes for SaaS
+2026-04-07T10:16:25.407Z [jfxr ] [INFO ] [b50c213be6eca6c7] [frontend_resources_handler:25 ] [MainServer                      ] Serving frontend files from: "/opt/jfrog/xray/app/frontend/lib"
+2026-04-07T10:16:25.407Z [jfxr ] [INFO ] [                ] [permission_validator:36       ] [BackgroundContext               ] Configuration for 'isSkipPermissionsCheck': false
+2026-04-07T10:16:25.409Z [jfxr ] [ERROR] [b50c213be6eca6c7] [start_xray_server:118         ] [MainServer                      ] Failed to LoadLicenses: no valid license in bin mgr and no trial license
+2026-04-07T10:16:25.410Z [jfxr ] [ERROR] [b50c213be6eca6c7] [ha_service:130                ] [MainServer                      ] failed to register HA node
+ --- at /go/src/jfrog.com/xray/xray/backend/backend/deployment/ha/ha_service.go:129 (Service.ValidateLicenseAndRegisterNodeForServer) ---
+Caused by: master keys do not match
+2026-04-07T10:16:25.410Z [jfxr ] [ERROR] [b50c213be6eca6c7] [general_utils:29              ] [MainServer                      ] Critical error: exiting from Xray Program, reason: failed to register HA node
+ --- at /go/src/jfrog.com/xray/xray/backend/backend/deployment/ha/ha_service.go:129 (Service.ValidateLicenseAndRegisterNodeForServer) ---
+Caused by: master keys do not match
+2026-04-07T10:16:25.410Z [jfxr ] [ERROR] [b50c213be6eca6c7] [general_utils:24              ] [MainServer                      ] Exiting from Xray. goroutine 1 [running]:
+runtime/debug.Stack()
+        /root/.gvm/gos/go1.25.8/src/runtime/debug/stack.go:26 +0x5e
+jfrog.com/xray/common/common_utils.LogAndExit({0xac596b0, 0xc0017072f0})
+        /go/src/jfrog.com/xray/xray/backend/common/common_utils/general_utils.go:24 +0x25
+jfrog.com/xray/common/common_utils.LogAndExitWithError({0xac596b0, 0xc0017072f0}, {0xabff060?, 0xc005cbe280?})
+        /go/src/jfrog.com/xray/xray/backend/common/common_utils/general_utils.go:30 +0x87
+jfrog.com/xray/backend/deployment/ha.(*Service).ValidateLicenseAndRegisterNodeForServer(0xc000cc9f40, {0xac596b0, 0xc0017072f0}, 0xca?, 0x1a?)
+        /go/src/jfrog.com/xray/xray/backend/backend/deployment/ha/ha_service.go:131 +0x226
+jfrog.com/xray/backend/startup.InitXrayServer({0xac596b0, 0xc0044a3aa0})
+        /go/src/jfrog.com/xray/xray/backend/backend/startup/start_xray_server.go:120 +0xab5
+main.main()
+        /go/src/jfrog.com/xray/xray/backend/cmd/server/server.go:15 +0x32
 
+panic: LogAndExit triggered
 
-
-
-
-shared:
-    database:
-        type: postgresql
-        driver: org.postgresql.Driver
-        url: postgres://IP:5432/xraydb?sslmode=disable
-        username: xray
-        password: PASSWORD
-    rabbitMq:
-        enabled: true
-        external: true
-        user: "xray"
-        password: ANOTHER_PASSWORD
-        url: "amqp://xray:ANOTHER_PASSWORD@127.0.0.1:5672/xray"
-    jfrogUrl: http://jfrog.example.com:8082
-    security:
-        joinKey: join.key
-    node:
-        id: "xray-rhel10-one"
-        ip: 127.0.0.1
-    extraJavaOpts: "-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true"
+goroutine 1 [running]:
+jfrog.com/xray/common/logger.(*ZeroLogAdapter).Panic.(*Logger).Panic.func1({0xc005bb52c0?, 0x0?})
+        /go/pkg/mod/github.com/rs/zerolog@v1.33.0/log.go:405 +0x27
+github.com/rs/zerolog.(*Event).msg(0xc000d6e1c0, {0xc005bb52c0, 0x14})
+        /go/pkg/mod/github.com/rs/zerolog@v1.33.0/event.go:158 +0x2a6
+github.com/rs/zerolog.(*Event).Msgf(0xc000d6e1c0, {0x7342230?, 0xc000d6e1c0?}, {0x0?, 0x6485900?, 0xc005ca4c01?})
+        /go/pkg/mod/github.com/rs/zerolog@v1.33.0/event.go:131 +0x46
+jfrog.com/xray/common/logger.(*ZeroLogAdapter).Panic(0xc005ca4c00?, {0xac596b0, 0xc0017072f0}, {0x7342230, 0x14}, {0x0, 0x0, 0x0})
+        /go/src/jfrog.com/xray/xray/backend/common/logger/zerolog_adapter.go:75 +0x77
+jfrog.com/xray/common/common_utils.LogAndExit({0xac596b0, 0xc0017072f0})
+        /go/src/jfrog.com/xray/xray/backend/common/common_utils/general_utils.go:25 +0x9c
+jfrog.com/xray/common/common_utils.LogAndExitWithError({0xac596b0, 0xc0017072f0}, {0xabff060?, 0xc005cbe280?})
+        /go/src/jfrog.com/xray/xray/backend/common/common_utils/general_utils.go:30 +0x87
+jfrog.com/xray/backend/deployment/ha.(*Service).ValidateLicenseAndRegisterNodeForServer(0xc000cc9f40, {0xac596b0, 0xc0017072f0}, 0xca?, 0x1a?)
+        /go/src/jfrog.com/xray/xray/backend/backend/deployment/ha/ha_service.go:131 +0x226
+jfrog.com/xray/backend/startup.InitXrayServer({0xac596b0, 0xc0044a3aa0})
+        /go/src/jfrog.com/xray/xray/backend/backend/startup/start_xray_server.go:120 +0xab5
+main.main()
+        /go/src/jfrog.com/xray/xray/backend/cmd/server/server.go:15 +0x32
+2026-04-07T10:16:27.038Z [jfrou] [WARN ] [3cf2021cce7b4555] [healthcheck.go:65             ] [main                ] [] - Checking health of service 'jfxr_01knkdee4txe4p422sj3c88z3w-xray-rhel10-two' using URL 'http://localhost:8000/api/v1/system/readiness' returned an error: do secure: Get "http://localhost:8000/api/v1/system/readiness": dial tcp 127.0.0.1:8000: connect: connection refused
+2026-04-07T10:16:27.038Z [jfrou] [WARN ] [3cf2021cce7b4555] [local_topology_helper.go:68   ] [main                ] [] - Missing required services: [jfxidx jfxana jfxpst jfxpe]
+2026-04-07T10:16:27.038Z [jfrou] [WARN ] [3cf2021cce7b4555] [local_topology.go:371         ] [main                ] [] - Readiness test failed with the following error: "required node services are missing or unhealthy"
