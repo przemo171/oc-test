@@ -1,1 +1,13 @@
-"message": "do secure: Get \"http://localhost:8000/api/v1/system/readiness\": dial tcp [::1]:8000: connect: connection refused"
+
+sudo -u postgres psql xraydb -c "\dn"
+List of schemas
+  Name  |       Owner
+--------+-------------------
+ public | pg_database_owner
+(1 row)
+
+
+
+
+sudo -u postgres psql xraydb -c "\dt xray.*"
+Did not find any relation named "xray.*".
