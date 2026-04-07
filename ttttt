@@ -1,69 +1,60 @@
-2026-04-07T10:16:25.370Z [jfxr ] [INFO ] [                ] [adapter:33                    ] [UnnamedContext                  ] SBOM BackgroundMigration: Starting background migration: ArtifactsCleanup
-2026-04-07T10:16:25.373Z [jfxr ] [ERROR] [                ] [adapter:39                    ] [BackgroundContext               ] Failed getting saved metrics from db: Failed getting metrics from db
- --- at /go/pkg/mod/jfrog.com/xray-sbom@v1.69.13/internal/common/metrics/metrics.go:79 (fromDB) ---
-Caused by: ERROR: relation "sbom.metrics" does not exist (SQLSTATE 42P01)
-2026-04-07T10:16:25.374Z [jfxr ] [ERROR] [                ] [adapter:39                    ] [UnnamedContext                  ] SBOM BackgroundMigration: Failed running migration ArtifactsCleanup: Failed to create migration row for ArtifactsCleanup
- --- at /go/pkg/mod/jfrog.com/xray-sbom@v1.69.13/internal/common/db/migration/bg_migration/driver.go:105 (Driver.runMigration) ---
-Caused by: SBOM BackgroundMigration: Failed to retrieve migration row for ArtifactsCleanup
- --- at /go/pkg/mod/jfrog.com/xray-sbom@v1.69.13/internal/common/db/migration/bg_migration/driver.go:192 (Driver.getMigrationRow) ---
-Caused by: ERROR: relation "sbom.background_migrations" does not exist (SQLSTATE 42P01)
-2026-04-07T10:16:25.374Z [jfxr ] [ERROR] [b50c213be6eca6c7] [samplers:58                   ] [MainServer                      ] RabbitMQ keep alive failed, error: healthcheck connection is nil, RabbitMQ may be unavailable
- --- at /go/src/jfrog.com/xray/xray/backend/backend/xqueue/connector/mq_connector.go:140 (mqConnectionManager.Ping) ---
-2026-04-07T10:16:25.374Z [jfxr ] [WARN ] [b50c213be6eca6c7] [health_checker:190            ] [MainServer                      ] RabbitMQ Error: No connection to RabbitMQ, test took 0ms
-2026-04-07T10:16:25.374Z [jfxr ] [INFO ] [                ] [health_checker:80             ] [UnnamedContext                  ] HealthChecker is starting up...
-2026-04-07T10:16:25.375Z [jfxr ] [WARN ] [b50c213be6eca6c7] [execution_service:106         ] [MainServer                      ] Execution service type is not available, returning Null execution service
-2026-04-07T10:16:25.375Z [jfxr ] [INFO ] [                ] [global_chaches_config:131     ] [BackgroundContext               ] Global cache PublicElfFilenames size was not specified. Using default of 10000.
-2026-04-07T10:16:25.375Z [jfxr ] [INFO ] [                ] [global_chaches_config:150     ] [BackgroundContext               ] Global cache PublicElfFilenames expiry was not specified. Will use default of 1m0s
-2026-04-07T10:16:25.376Z [jfxr ] [ERROR] [                ] [github_grpc_client:361        ] [BackgroundContext               ] (--wrapper--)tenantId is not a string
-2026-04-07T10:16:25.376Z [jfxr ] [INFO ] [                ] [github_grpc_client:142        ] [BackgroundContext               ] Successfully created GitHub gRPC client with target: localhost:8046
-2026-04-07T10:16:25.377Z [jfxr ] [ERROR] [                ] [bin_mgr_cache:54              ] [BackgroundContext               ] Failed to get binary manager id:failed on GetAllBinaryManagerIds query
- --- at /go/src/jfrog.com/xray/xray/backend/backend/dbaccess/dao/binary_managers_dao.go:581 (binMgrDao.GetBinaryManagerId) ---
-Caused by: not found
-2026-04-07T10:16:25.377Z [jfxr ] [INFO ] [b50c213be6eca6c7] [catalog:164                   ] [MainServer                      ] initializing catalog routes for SaaS
-2026-04-07T10:16:25.407Z [jfxr ] [INFO ] [b50c213be6eca6c7] [frontend_resources_handler:25 ] [MainServer                      ] Serving frontend files from: "/opt/jfrog/xray/app/frontend/lib"
-2026-04-07T10:16:25.407Z [jfxr ] [INFO ] [                ] [permission_validator:36       ] [BackgroundContext               ] Configuration for 'isSkipPermissionsCheck': false
-2026-04-07T10:16:25.409Z [jfxr ] [ERROR] [b50c213be6eca6c7] [start_xray_server:118         ] [MainServer                      ] Failed to LoadLicenses: no valid license in bin mgr and no trial license
-2026-04-07T10:16:25.410Z [jfxr ] [ERROR] [b50c213be6eca6c7] [ha_service:130                ] [MainServer                      ] failed to register HA node
- --- at /go/src/jfrog.com/xray/xray/backend/backend/deployment/ha/ha_service.go:129 (Service.ValidateLicenseAndRegisterNodeForServer) ---
-Caused by: master keys do not match
-2026-04-07T10:16:25.410Z [jfxr ] [ERROR] [b50c213be6eca6c7] [general_utils:29              ] [MainServer                      ] Critical error: exiting from Xray Program, reason: failed to register HA node
- --- at /go/src/jfrog.com/xray/xray/backend/backend/deployment/ha/ha_service.go:129 (Service.ValidateLicenseAndRegisterNodeForServer) ---
-Caused by: master keys do not match
-2026-04-07T10:16:25.410Z [jfxr ] [ERROR] [b50c213be6eca6c7] [general_utils:24              ] [MainServer                      ] Exiting from Xray. goroutine 1 [running]:
-runtime/debug.Stack()
-        /root/.gvm/gos/go1.25.8/src/runtime/debug/stack.go:26 +0x5e
-jfrog.com/xray/common/common_utils.LogAndExit({0xac596b0, 0xc0017072f0})
-        /go/src/jfrog.com/xray/xray/backend/common/common_utils/general_utils.go:24 +0x25
-jfrog.com/xray/common/common_utils.LogAndExitWithError({0xac596b0, 0xc0017072f0}, {0xabff060?, 0xc005cbe280?})
-        /go/src/jfrog.com/xray/xray/backend/common/common_utils/general_utils.go:30 +0x87
-jfrog.com/xray/backend/deployment/ha.(*Service).ValidateLicenseAndRegisterNodeForServer(0xc000cc9f40, {0xac596b0, 0xc0017072f0}, 0xca?, 0x1a?)
-        /go/src/jfrog.com/xray/xray/backend/backend/deployment/ha/ha_service.go:131 +0x226
-jfrog.com/xray/backend/startup.InitXrayServer({0xac596b0, 0xc0044a3aa0})
-        /go/src/jfrog.com/xray/xray/backend/backend/startup/start_xray_server.go:120 +0xab5
-main.main()
-        /go/src/jfrog.com/xray/xray/backend/cmd/server/server.go:15 +0x32
-
-panic: LogAndExit triggered
-
-goroutine 1 [running]:
-jfrog.com/xray/common/logger.(*ZeroLogAdapter).Panic.(*Logger).Panic.func1({0xc005bb52c0?, 0x0?})
-        /go/pkg/mod/github.com/rs/zerolog@v1.33.0/log.go:405 +0x27
-github.com/rs/zerolog.(*Event).msg(0xc000d6e1c0, {0xc005bb52c0, 0x14})
-        /go/pkg/mod/github.com/rs/zerolog@v1.33.0/event.go:158 +0x2a6
-github.com/rs/zerolog.(*Event).Msgf(0xc000d6e1c0, {0x7342230?, 0xc000d6e1c0?}, {0x0?, 0x6485900?, 0xc005ca4c01?})
-        /go/pkg/mod/github.com/rs/zerolog@v1.33.0/event.go:131 +0x46
-jfrog.com/xray/common/logger.(*ZeroLogAdapter).Panic(0xc005ca4c00?, {0xac596b0, 0xc0017072f0}, {0x7342230, 0x14}, {0x0, 0x0, 0x0})
-        /go/src/jfrog.com/xray/xray/backend/common/logger/zerolog_adapter.go:75 +0x77
-jfrog.com/xray/common/common_utils.LogAndExit({0xac596b0, 0xc0017072f0})
-        /go/src/jfrog.com/xray/xray/backend/common/common_utils/general_utils.go:25 +0x9c
-jfrog.com/xray/common/common_utils.LogAndExitWithError({0xac596b0, 0xc0017072f0}, {0xabff060?, 0xc005cbe280?})
-        /go/src/jfrog.com/xray/xray/backend/common/common_utils/general_utils.go:30 +0x87
-jfrog.com/xray/backend/deployment/ha.(*Service).ValidateLicenseAndRegisterNodeForServer(0xc000cc9f40, {0xac596b0, 0xc0017072f0}, 0xca?, 0x1a?)
-        /go/src/jfrog.com/xray/xray/backend/backend/deployment/ha/ha_service.go:131 +0x226
-jfrog.com/xray/backend/startup.InitXrayServer({0xac596b0, 0xc0044a3aa0})
-        /go/src/jfrog.com/xray/xray/backend/backend/startup/start_xray_server.go:120 +0xab5
-main.main()
-        /go/src/jfrog.com/xray/xray/backend/cmd/server/server.go:15 +0x32
-2026-04-07T10:16:27.038Z [jfrou] [WARN ] [3cf2021cce7b4555] [healthcheck.go:65             ] [main                ] [] - Checking health of service 'jfxr_01knkdee4txe4p422sj3c88z3w-xray-rhel10-two' using URL 'http://localhost:8000/api/v1/system/readiness' returned an error: do secure: Get "http://localhost:8000/api/v1/system/readiness": dial tcp 127.0.0.1:8000: connect: connection refused
-2026-04-07T10:16:27.038Z [jfrou] [WARN ] [3cf2021cce7b4555] [local_topology_helper.go:68   ] [main                ] [] - Missing required services: [jfxidx jfxana jfxpst jfxpe]
-2026-04-07T10:16:27.038Z [jfrou] [WARN ] [3cf2021cce7b4555] [local_topology.go:371         ] [main                ] [] - Readiness test failed with the following error: "required node services are missing or unhealthy"
+{
+    "router": {
+        "node_id": "jfrog",
+        "state": "HEALTHY",
+        "message": "OK",
+        "required_service_types": [
+            "jfrt",
+            "jfac",
+            "jfmd",
+            "jffe",
+            "jfob",
+            "jfcon",
+            "jfevt"
+        ]
+    },
+    "services": [
+        {
+            "service_id": "jfac@01hprk2wc5z9gs1arjv3x31k30",
+            "node_id": "jfrog",
+            "state": "HEALTHY",
+            "message": "OK"
+        },
+        {
+            "service_id": "jfcon@01hprk2wc5z9gs1arjv3x31k30",
+            "node_id": "jfrog",
+            "state": "HEALTHY",
+            "message": "OK"
+        },
+        {
+            "service_id": "jfevt@01hprk2wc5z9gs1arjv3x31k30",
+            "node_id": "jfrog",
+            "state": "HEALTHY",
+            "message": "OK"
+        },
+        {
+            "service_id": "jffe@01hprk2wc5z9gs1arjv3x31k30",
+            "node_id": "jfrog",
+            "state": "HEALTHY",
+            "message": "OK"
+        },
+        {
+            "service_id": "jfmd@01hprk30ec63sr1jhfdmebbjx6",
+            "node_id": "jfrog",
+            "state": "HEALTHY",
+            "message": "OK"
+        },
+        {
+            "service_id": "jfob@01hprk3dd4rc6n1f3sexmt1ah0",
+            "node_id": "jfrog",
+            "state": "HEALTHY",
+            "message": "OK"
+        },
+        {
+            "service_id": "jfrt@01hprk3dd4rc6n1f3sexmt1ah0",
+            "node_id": "jfrog",
+            "state": "HEALTHY",
+            "message": "OK"
+        }
+    ]
+}
