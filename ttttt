@@ -1,0 +1,66 @@
+2026-04-07T09:59:56.159Z [jfrou] [INFO ] [6655be3ec747c37a] [environment.go:63             ] [main                ] [] - MemoryLimit set to 0 (ratio: 0.90)
+2026-04-07T09:59:56.159Z [jfrou] [INFO ] [6655be3ec747c37a] [bootstrap.go:98               ] [main                ] [] - JFrog Router Service ID: jfrou@01knkp4tfzy90q57ra1ncg6mq2
+2026-04-07T09:59:56.159Z [jfrou] [INFO ] [6655be3ec747c37a] [bootstrap.go:99               ] [main                ] [] - JFrog Router Node ID: xray-rhel10-one
+2026-04-07T09:59:56.175Z [jfxps] [WARN ] [edd4ab3e6a69cfe8] [ha_dao:179                    ] [MainPersist                     ] Couldn't find node xray-rhel10-one: not found
+2026-04-07T09:59:56.175Z [jfxps] [INFO ] [edd4ab3e6a69cfe8] [run_main:163                  ] [MainPersist                     ] Waiting 4s before checking for xray server status again
+2026-04-07T09:59:56.183Z [jfrou] [INFO ] [6655be3ec747c37a] [trusted.go:36                 ] [main                ] [] - System cert pool contents were loaded as trusted CAs for TLS communication
+2026-04-07T09:59:56.183Z [jfrou] [INFO ] [6655be3ec747c37a] [trusted.go:58                 ] [main                ] [] - No certificate to be loaded as trusted CAs found in []
+2026-04-07T09:59:56.183Z [jfrou] [INFO ] [6655be3ec747c37a] [trusted.go:36                 ] [main                ] [] - System cert pool contents were loaded as trusted CAs for TLS communication
+2026-04-07T09:59:56.183Z [jfrou] [INFO ] [6655be3ec747c37a] [trusted.go:58                 ] [main                ] [] - No certificate to be loaded as trusted CAs found in []
+2026-04-07T09:59:56.202Z [shell] [INFO ] [] [installerCommon.sh:3606       ] [main] - Found explicit shared.node.ip in system.yaml with value : 127.0.0.1
+2026-04-07T09:59:56.259Z [shell] [INFO ] [] [installerCommon.sh:3601       ] [main] - Setting JF_SHARED_NODE_NAME to xray-app
+2026-04-07T09:59:56.343Z [jfrou] [INFO ] [6655be3ec747c37a] [join_executor.go:116          ] [main                ] [] - Cluster join: Trying to rejoin the cluster http://jfrog.example.com:8082/access
+2026-04-07T09:59:56.403Z [jfrou] [FATAL] [6655be3ec747c37a] [single_tenant_services_holder.go:43] [main                ] [] - Failed joining Access: could not join Access: cluster join: Failed joining the cluster; Error: Error response from service registry, status code: 400; message: Service ID mismatch; detail: Conflicting check-url/join-request service ids; Check url: "http://127.0.0.1:8082/router/api/v1/system/ping" check-url service id: "jfrou@01hprk2zqdxcks436nfdxb5v3p", join-request service id: "jfrou@01knkp4tfzy90q57ra1ncg6mq2"
+2026-04-07T09:59:56.467Z [jfxpe] [INFO ] [7d497ff939c33492] [migrate:360                   ] [MainPolicyEnforcer              ] Skipped running migrations
+2026-04-07T09:59:56.468Z [jfxpe] [INFO ] [7d497ff939c33492] [migrate:360                   ] [MainPolicyEnforcer              ] Skipped running migrations
+2026-04-07T09:59:56.470Z [jfxpe] [WARN ] [7d497ff939c33492] [ha_dao:179                    ] [MainPolicyEnforcer              ] Couldn't find node xray-rhel10-one: not found
+2026-04-07T09:59:56.470Z [jfxpe] [INFO ] [7d497ff939c33492] [run_main:163                  ] [MainPolicyEnforcer              ] Waiting 1s before checking for xray server status again
+2026-04-07T09:59:56.665Z [jfxsb] [WARN ] [fc92ec26d237016b] [ha_dao:179                    ] [MainSbom                        ] Couldn't find node xray-rhel10-one: not found
+2026-04-07T09:59:56.665Z [jfxsb] [INFO ] [fc92ec26d237016b] [run_main:163                  ] [MainSbom                        ] Waiting 2s before checking for xray server status again
+2026/04/07 11:59:56 maxprocs: Leaving GOMAXPROCS=8: CPU quota undefined
+2026-04-07T09:59:56.883Z [jfob] [INFO ] [4c8574b5c37ba8f8] [bootstrap.go:40               ] [main                ] - JFrog Observability (jfob) service initialization started. Version: 2.31.0 (revision: 8ee2d1688a, build date: 2026-03-18T06:12:54Z) PID: 1169234 Home: /opt/jfrog/xray
+2026-04-07T09:59:56.883Z [jfob] [DEBUG] [                ] [file_resolver.go:92           ] [main                ] - Resolved system configuration file path: /opt/jfrog/xray/var/etc/system.yaml
+2026/04/07 11:59:56 Interval log rotation should not be zero or a negative integer. Provided : 0. Log rotation interval has been set to 24 hours
+2026/04/07 11:59:56 Interval log rotation should not be zero or a negative integer. Provided : 0. Log rotation interval has been set to 24 hours
+2026/04/07 11:59:56 Interval log rotation should not be zero or a negative integer. Provided : 0. Log rotation interval has been set to 24 hours
+2026/04/07 11:59:56 Interval log rotation should not be zero or a negative integer. Provided : 0. Log rotation interval has been set to 24 hours
+2026/04/07 11:59:56 Interval log rotation should not be zero or a negative integer. Provided : 0. Log rotation interval has been set to 24 hours
+2026-04-07T09:59:56.885Z [jfob ] [INFO ] [4c8574b5c37ba8f8] [bootstrap.go:268              ] [main                ] - Resolving service Id... [startup] [spanId][4c8574b5c37ba8f8] [spanTraceId][4c8574b5c37ba8f8]
+2026-04-07T09:59:57.031Z [jfxan] [WARN ] [57795673f5c62834] [ha_dao:179                    ] [MainAnalysis                    ] Couldn't find node xray-rhel10-one: not found
+2026-04-07T09:59:57.031Z [jfxan] [INFO ] [57795673f5c62834] [run_main:163                  ] [MainAnalysis                    ] Waiting 4s before checking for xray server status again
+2026-04-07T09:59:57.472Z [jfxpe] [WARN ] [7d497ff939c33492] [ha_dao:179                    ] [MainPolicyEnforcer              ] Couldn't find node xray-rhel10-one: not found
+2026-04-07T09:59:57.472Z [jfxpe] [INFO ] [7d497ff939c33492] [run_main:163                  ] [MainPolicyEnforcer              ] Waiting 2s before checking for xray server status again
+2026-04-07T09:59:57.843Z [jfxid] [WARN ] [6f207cc24acdee34] [ha_dao:179                    ] [MainIndexer                     ] Couldn't find node xray-rhel10-one: not found
+2026-04-07T09:59:57.843Z [jfxid] [INFO ] [6f207cc24acdee34] [run_main:163                  ] [MainIndexer                     ] Waiting 4s before checking for xray server status again
+2026-04-07T09:59:58.667Z [jfxsb] [WARN ] [fc92ec26d237016b] [ha_dao:179                    ] [MainSbom                        ] Couldn't find node xray-rhel10-one: not found
+2026-04-07T09:59:58.667Z [jfxsb] [INFO ] [fc92ec26d237016b] [run_main:163                  ] [MainSbom                        ] Waiting 4s before checking for xray server status again
+2026-04-07T09:59:59.474Z [jfxpe] [WARN ] [7d497ff939c33492] [ha_dao:179                    ] [MainPolicyEnforcer              ] Couldn't find node xray-rhel10-one: not found
+2026-04-07T09:59:59.474Z [jfxpe] [INFO ] [7d497ff939c33492] [run_main:163                  ] [MainPolicyEnforcer              ] Waiting 4s before checking for xray server status again
+2026-04-07T10:00:00.177Z [jfxps] [WARN ] [edd4ab3e6a69cfe8] [ha_dao:179                    ] [MainPersist                     ] Couldn't find node xray-rhel10-one: not found
+2026-04-07T10:00:00.177Z [jfxps] [INFO ] [edd4ab3e6a69cfe8] [run_main:163                  ] [MainPersist                     ] Waiting 8s before checking for xray server status again
+2026-04-07T10:00:00.348Z [jfxr ] [INFO ] [ba186e7959b8926e] [access_client_bootstrap:243   ] [MainServer                      ] (--wrapper--)Cluster join: Retry 10: Service registry join failed, will retry. Error: cluster join: Failed joining the cluster; Error: error while trying to connect to local router at address: Post "http://localhost:8046/access/api/v1/registry/join": dial tcp 127.0.0.1:8046: connect: connection refused
+
+
+
+
+
+shared:
+    database:
+        type: postgresql
+        driver: org.postgresql.Driver
+        url: postgres://IP:5432/xraydb?sslmode=disable
+        username: xray
+        password: PASSWORD
+    rabbitMq:
+        enabled: true
+        external: true
+        user: "xray"
+        password: ANOTHER_PASSWORD
+        url: "amqp://xray:ANOTHER_PASSWORD@127.0.0.1:5672/xray"
+    jfrogUrl: http://jfrog.example.com:8082
+    security:
+        joinKey: join.key
+    node:
+        id: "xray-rhel10-one"
+        ip: 127.0.0.1
+    extraJavaOpts: "-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true"
