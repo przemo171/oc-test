@@ -1,7 +1,129 @@
-find /var/opt/jfrog/artifactory/ -name "master.key" 2>/dev/null
-/var/opt/jfrog/artifactory/etc/security/master.key
-[root@jfrog ~]# grep -i "master.key\|masterkey\|master key" /var/opt/jfrog/artifactory/
-backup/    bootstrap/ data/      etc/       log/       work/
-[root@jfrog ~]# grep -i "master.key\|masterkey\|master key" /var/opt/jfrog/artifactory/log/artifactory-service.log
-[root@jfrog ~]# cat /var/opt/jfrog/artifactory/etc/security/master.key | wc -c
-64
+🟢 Architektura (prosta i dobra)
+systemd uruchamia skrypt
+skrypt:
+robi curl do CyberArk (cert auth)
+wyciąga sekret
+zapisuje do /run/*.env
+docker compose startuje z --env-file
+🧩 1. Skrypt (kluczowy element)
+/usr/local/bin/start-my-compose.sh
+
+
+
+
+#!/bin/bash
+set -euo pipefail
+
+ENV_FILE=/run/my-compose.env
+
+# 🔐 endpoint CyberArk (dopasuj do siebie)
+CYBERARK_URL="https://cyberark.example.com/AIMWebService/api/Accounts"
+
+# 🔐 certyfikaty do mTLS
+CERT="/etc/ssl/certs/cyberark-client.crt"
+KEY="/etc/ssl/private/cyberark-client.key"
+
+# 🔐 pobranie sekretów
+DB_USER=$(curl -s --cert "$CERT" --key "$KEY" \
+  "$CYBERARK_URL?AppID=myapp&Query=Safe=MySafe;Object=db_user" \
+  | jq -r '.Content')
+
+DB_PASSWORD=$(curl -s --cert "$CERT" --key "$KEY" \
+  "$CYBERARK_URL?AppID=myapp&Query=Safe=MySafe;Object=db_password" \
+  | jq -r '.Content')
+
+# 🧾 zapis do pliku tymczasowego (tmpfs)
+cat > "$ENV_FILE" <<EOF
+DB_USER=$DB_USER
+DB_PASSWORD=$DB_PASSWORD
+EOF
+
+chmod 600 "$ENV_FILE"
+
+# 🚀 start compose
+exec /usr/bin/docker compose --env-file "$ENV_FILE" up -d
+
+
+
+
+
+🔒 2. Uprawnienia
+chmod 700 /usr/local/bin/start-my-compose.sh
+chmod 600 /etc/ssl/private/cyberark-client.key
+
+👉 klucz prywatny musi być dobrze chroniony
+
+🧩 3. systemd
+[Unit]
+Description=My Docker Compose App (CyberArk)
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/ścieżka/do/projektu
+
+ExecStart=/usr/local/bin/start-my-compose.sh
+ExecStop=/usr/bin/docker compose down
+
+RemainAfterExit=true
+
+Restart=on-failure
+RestartSec=5s
+
+StandardOutput=journal
+StandardError=journal
+
+# 🔐 dodatkowe utwardzenie
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+🧩 4. docker-compose.yml
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+🔐 Dlaczego /run?
+/run to tmpfs (RAM)
+plik znika po restarcie
+nie zostaje na dysku ✅
+⚠️ Ważne rzeczy (z doświadczenia)
+❗ 1. jq wymagane
+apt install jq
+❗ 2. Timeouty i retry (warto dodać)
+
+Rozszerz curl:
+
+--fail --retry 3 --connect-timeout 5
+❗ 3. Nie loguj sekretów
+
+Nie używaj:
+
+set -x
+❗ 4. Błąd = brak startu
+
+Dzięki:
+
+set -euo pipefail
+
+jeśli CyberArk nie odpowie → systemd zobaczy błąd i zrobi retry
+
+🟡 Bonus (bardziej odporne)
+
+Możesz dodać walidację:
+
+[ -z "$DB_PASSWORD" ] && exit 1
+🧠 TL;DR
+
+✔ curl + cert = idealne do CyberArk PAM
+✔ wrapper script → najlepszy pattern
+✔ sekrety do /run/*.env
+✔ docker compose --env-file
+✔ systemd restartuje przy błędzie
