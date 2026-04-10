@@ -129,8 +129,28 @@ Możesz dodać walidację:
 ✔ systemd restartuje przy błędzie
 
 
-Unable to get AAD authorization tokens with message: Please run 'az login' to setup account.
-Unable to get admin user credentials with message: Please run 'az login' to setup account.
+<config version="2">
+    <chain>
+        <!-- Cache lokalny na dysku serwera — przyspiesza odczyty często pobieranych artefaktów -->
+        <provider id="cache-fs" type="cache-fs">
 
-Error response from daemon: Get "https://neularegistry.azurecr.io/v2/": unauthorized: {"errors":[{"code":"UNAUTHORIZED","message":"authentication required, visit https://aka.ms/acr/authorization for more information. CorrelationId: 19336cd9-b2fc-4c69-b467-247bf26f855d"}]}
-Login failed.
+            <!-- Rozmiar cache — ustaw ~20-30% lokalnego dysku, nie NFS -->
+            <maxCacheSize>20GB</maxCacheSize>
+
+            <!-- Jak długo plik siedzi w cache bez użycia (ms) — 30 dni -->
+            <maxAge>2592000000</maxAge>
+
+            <!-- Katalog cache — LOKALNY dysk, nie NFS -->
+            <cacheProviderDir>/var/opt/jfrog/artifactory/cache</cacheProviderDir>
+
+            <!-- Właściwy store na NFS -->
+            <provider id="file-system" type="file-system">
+                <fileStoreDir>/mnt/zasob</fileStoreDir>
+
+                <!-- Liczba wątków do operacji na plikach -->
+                <maxStorageThreads>10</maxStorageThreads>
+            </provider>
+
+        </provider>
+    </chain>
+</config>
