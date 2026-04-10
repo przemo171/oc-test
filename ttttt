@@ -127,3 +127,10 @@ Możesz dodać walidację:
 ✔ sekrety do /run/*.env
 ✔ docker compose --env-file
 ✔ systemd restartuje przy błędzie
+
+
+Unable to get AAD authorization tokens with message: Please run 'az login' to setup account.
+Unable to get admin user credentials with message: Please run 'az login' to setup account.
+
+Error response from daemon: Get "https://neularegistry.azurecr.io/v2/": unauthorized: {"errors":[{"code":"UNAUTHORIZED","message":"authentication required, visit https://aka.ms/acr/authorization for more information. CorrelationId: 19336cd9-b2fc-4c69-b467-247bf26f855d"}]}
+Login failed.
