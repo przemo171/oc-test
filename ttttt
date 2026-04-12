@@ -197,3 +197,12 @@ Możesz dodać walidację:
         </security>
     </system.webServer>
 </configuration>
+
+
+# Wyczyść reguły dla _stcore
+& "$env:windir\system32\inetsrv\appcmd.exe" clear config "Default Web Site/_stcore" -section:system.webServer/security/authorization /commit:apphost
+
+# Dodaj Allow all dla _stcore
+& "$env:windir\system32\inetsrv\appcmd.exe" set config "Default Web Site/_stcore" -section:system.webServer/security/authorization /+"[accessType='Allow',users='*']" /commit:apphost
+
+iisreset
