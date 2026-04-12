@@ -165,6 +165,10 @@ Możesz dodać walidację:
             <anonymousAuthentication enabled="true" />
             <windowsAuthentication enabled="false" />
           </authentication>
+          <authorization>
+            <remove users="*" roles="" verbs="" />
+            <add accessType="Allow" users="*" />
+          </authorization>
         </security>
       </system.webServer>
     </location>
