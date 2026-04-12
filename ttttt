@@ -206,3 +206,6 @@ Możesz dodać walidację:
 & "$env:windir\system32\inetsrv\appcmd.exe" set config "Default Web Site/_stcore" -section:system.webServer/security/authorization /+"[accessType='Allow',users='*']" /commit:apphost
 
 iisreset
+
+ERROR ( message:New add object missing required attributes. Cannot add duplicate collection entry of type 'add' with combined key attributes 'users, roles, verbs' respectively set to '*, , '
+. )
