@@ -154,3 +154,42 @@ Możesz dodać walidację:
         </provider>
     </chain>
 </config>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+
+    <!-- Punkt 2a: WebSocket -->
+    <webSocket enabled="true" />
+
+    <!-- Punkt 2b: Proxy settings dla ARR -->
+    <proxy enabled="true"
+           httpVersion="HTTP11"
+           includePortInRequestURL="false"
+           reverseRewriteHostInResponseHeaders="false" />
+
+    <!-- Punkt 3: Wyłącz kompresję/buforowanie -->
+    <urlCompression doStaticCompression="false" doDynamicCompression="false" />
+
+    <!-- Twoje istniejące reguły URL Rewrite -->
+    <rewrite>
+      <rules>
+        <rule name="Proxy to Python App" stopProcessing="true">
+          <match url="(.*)" />
+          <action type="Rewrite" url="http://localhost:8501/{R:1}" />
+        </rule>
+      </rules>
+    </rewrite>
+
+  </system.webServer>
+
+  <!-- Autoryzacja AD (punkt z poprzedniej odpowiedzi) -->
+  <system.web>
+    <authorization>
+      <allow roles="DOMENA\NazwaGrupy" />
+      <deny users="*" />
+    </authorization>
+  </system.web>
+
+</configuration>
