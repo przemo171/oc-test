@@ -158,38 +158,38 @@ Możesz dodać walidację:
 
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-  <system.webServer>
-
-    <!-- Punkt 2a: WebSocket -->
-    <webSocket enabled="true" />
-
-    <!-- Punkt 2b: Proxy settings dla ARR -->
-    <proxy enabled="true"
-           httpVersion="HTTP11"
-           includePortInRequestURL="false"
-           reverseRewriteHostInResponseHeaders="false" />
-
-    <!-- Punkt 3: Wyłącz kompresję/buforowanie -->
-    <urlCompression doStaticCompression="false" doDynamicCompression="false" />
-
-    <!-- Twoje istniejące reguły URL Rewrite -->
-    <rewrite>
-      <rules>
-        <rule name="Proxy to Python App" stopProcessing="true">
-          <match url="(.*)" />
-          <action type="Rewrite" url="http://localhost:8501/{R:1}" />
-        </rule>
-      </rules>
-    </rewrite>
-
-  </system.webServer>
-
-  <!-- Autoryzacja AD (punkt z poprzedniej odpowiedzi) -->
-  <system.web>
-    <authorization>
-      <allow roles="DOMENA\NazwaGrupy" />
-      <deny users="*" />
-    </authorization>
-  </system.web>
-
+    <location path="_stcore">
+      <system.webServer>
+        <security>
+          <authentication>
+            <anonymousAuthentication enabled="true" />
+            <windowsAuthentication enabled="false" />
+          </authentication>
+        </security>
+      </system.webServer>
+    </location>
+    <system.webServer>
+        <urlCompression doStaticCompression="false" doDynamicCompression="false" />
+        <rewrite>
+            <rules>
+                <rule name="WebSocket" stopProcessing="true">
+                    <match url="^_stcore/stream" />
+                    <conditions>
+                      <add input="{HTTP_UPGRADE}" pattern="websocket" flags="IgnoreCase" />
+                    </conditions>
+                    <action type="Rewrite" url="http://127.0.0.1:8501/_stcore/stream" />
+                </rule>
+                <rule name="ReverseProxyInboundRule1" stopProcessing="true">
+                    <match url="(.*)" />
+                    <action type="Rewrite" url="http://127.0.0.1:8501/{R:1}" />
+                </rule>
+            </rules>
+        </rewrite>
+        <security>
+            <authorization>
+                <remove users="*" roles="" verbs="" />
+                <add accessType="Allow" users="" roles="domena\grupa" />
+            </authorization>
+        </security>
+    </system.webServer>
 </configuration>
