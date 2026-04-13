@@ -264,3 +264,19 @@ New-NetFirewallRule -DisplayName "Allow Streamlit localhost" `
   -RemoteAddress 127.0.0.1 -Action Allow
 
 httpd.exe: Syntax error on line 190 of C:/Apache24/conf/httpd.conf: Cannot load modules/mod_authn_ntlm.so into server: %1 is not a valid Win32 application.
+
+
+
+# Użytkownik który POWINIEN przejść
+ldapsearch -H ldap://twoj-dc.domena.local \
+  -D "CN=svc-artifactory,OU=Konta Serwisowe,DC=domena,DC=local" \
+  -w "Haslo" \
+  -b "DC=domena,DC=local" \
+  "(&(sAMAccountName=jan.kowalski)(memberOf=CN=jfrog-developers,OU=Grupy,DC=domena,DC=local))"
+
+# Użytkownik który NIE powinien przejść
+ldapsearch -H ldap://twoj-dc.domena.local \
+  -D "CN=svc-artifactory,OU=Konta Serwisowe,DC=domena,DC=local" \
+  -w "Haslo" \
+  -b "DC=domena,DC=local" \
+  "(&(sAMAccountName=jan.nowak)(memberOf=CN=jfrog-developers,OU=Grupy,DC=domena,DC=local))"
