@@ -216,3 +216,49 @@ ERROR ( message:New add object missing required attributes. Cannot add duplicate
                   <authorization />
               </security>
           </system.webServer>
+
+
+# Załaduj moduł NTLM SSO
+LoadModule auth_ntlm_module modules/mod_authn_ntlm.so
+
+# Proxy do Streamlit
+ProxyPreserveHost On
+
+# WebSocket — musi być PRZED ogólną regułą proxy
+RewriteEngine On
+RewriteCond %{HTTP:Upgrade} websocket [NC]
+RewriteCond %{HTTP:Connection} upgrade [NC]
+RewriteRule ^/?(.*) ws://127.0.0.1:8501/$1 [P,L]
+
+# HTTP proxy
+ProxyPass / http://127.0.0.1:8501/
+ProxyPassReverse / http://127.0.0.1:8501/
+
+# Wyłącz buforowanie — ważne dla Streamlit
+ProxyTimeout 300
+
+# Autoryzacja — Windows SSO + ograniczenie do grupy AD
+<Location />
+    AuthType SSPI
+    AuthName "Dostep zastrzezony"
+    NTLMAuth On
+    NTLMAuthoritative On
+    Require sspi-group "DOMENA\NazwaGrupy"
+</Location>
+
+# _stcore — wyłącz auth dla WebSocket Streamlit
+<Location /_stcore>
+    Satisfy Any
+    Allow from all
+</Location>
+
+
+LoadModule rewrite_module modules/mod_rewrite.so
+
+
+New-NetFirewallRule -DisplayName "Block Streamlit direct" `
+  -Direction Inbound -Protocol TCP -LocalPort 8501 -Action Block
+
+New-NetFirewallRule -DisplayName "Allow Streamlit localhost" `
+  -Direction Inbound -Protocol TCP -LocalPort 8501 `
+  -RemoteAddress 127.0.0.1 -Action Allow
