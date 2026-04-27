@@ -280,3 +280,6 @@ ldapsearch -H ldap://twoj-dc.domena.local \
   -w "Haslo" \
   -b "DC=domena,DC=local" \
   "(&(sAMAccountName=jan.nowak)(memberOf=CN=jfrog-developers,OU=Grupy,DC=domena,DC=local))"
+
+
+https://www.youtube.com/redirect?event=live_chat&redir_token=QUFFLUhqbndvYlRpY0hmSFJRdGt5N3h1RlI3WXhjczRjQXxBQ3Jtc0tscWxLMUkxUXM3UDVmNjc0NnhpTGxpVk5sdnJ2Q2NCNGZNQ1ZBLWE5Ml9SYWR5TURpemJsSjNMM0tiSzZuQUN6bHFVbE93WVhFeS1DV19pc21iVy1KSERuOWpxTEpWdl9MSjJiN1VDbVpBOFBZckZmRQ&q=https%3A%2F%2Fforms.gle%2Fq54erYdwUVJiaa6E8
