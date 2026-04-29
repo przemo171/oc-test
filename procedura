@@ -1,0 +1,185 @@
+stages:
+  - build
+  - docker-build
+  - deploy
+
+variables:
+  # Maven
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --show-version"
+  
+  # Artifactory
+  ARTIFACTORY_URL: "https://artifactory.twoja-domena.pl/artifactory"
+  ARTIFACTORY_MAVEN_REPO: "libs-release-local"
+  ARTIFACTORY_DOCKER_REPO: "docker-local"
+  
+  # OpenShift
+  OC_PROJECT: "my-app-prod"
+  APP_NAME: "my-java-app"
+  
+  # Versioning
+  VERSION: "${CI_COMMIT_SHORT_SHA}"
+  JAR_FILE: "target/${APP_NAME}-${VERSION}.jar"
+
+# Cache Maven dependencies
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .m2/repository/
+
+# ============================================
+# STAGE 1: Build Java Application with Maven
+# ============================================
+maven-build:
+  stage: build
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    # Konfiguracja Maven settings.xml z Artifactory
+    - echo "Configuring Maven for Artifactory..."
+    - mkdir -p ~/.m2
+    - cp maven-settings.xml ~/.m2/settings.xml
+    
+    # Kompilacja i testowanie
+    - echo "Building application..."
+    - mvn ${MAVEN_CLI_OPTS} clean package -DskipTests=false
+    
+    # Rename JAR z wersją
+    - mv target/*.jar ${JAR_FILE}
+    
+    # Deploy do Artifactory
+    - echo "Deploying JAR to Artifactory..."
+    - |
+      curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_TOKEN} \
+           -T ${JAR_FILE} \
+           "${ARTIFACTORY_URL}/${ARTIFACTORY_MAVEN_REPO}/com/example/${APP_NAME}/${VERSION}/${APP_NAME}-${VERSION}.jar"
+    
+    - echo "JAR deployed: ${ARTIFACTORY_URL}/${ARTIFACTORY_MAVEN_REPO}/com/example/${APP_NAME}/${VERSION}/${APP_NAME}-${VERSION}.jar"
+  
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 day
+  
+  only:
+    - main
+    - develop
+    - /^release\/.*$/
+
+# ============================================
+# STAGE 2: Build Docker Image in OpenShift
+# ============================================
+openshift-build:
+  stage: docker-build
+  image: 
+    name: quay.io/openshift/origin-cli:latest
+    entrypoint: [""]
+  script:
+    # Login do OpenShift
+    - echo "Logging into OpenShift..."
+    - oc login ${OPENSHIFT_API_URL} --token=${OPENSHIFT_TOKEN} --insecure-skip-tls-verify=true
+    - oc project ${OC_PROJECT}
+    
+    # Sprawdź czy BuildConfig istnieje, jeśli nie - utwórz
+    - |
+      if ! oc get bc ${APP_NAME} &>/dev/null; then
+        echo "Creating BuildConfig..."
+        oc apply -f openshift/buildconfig.yaml
+      fi
+    
+    # Uruchom build z parametrami
+    - echo "Starting OpenShift build..."
+    - |
+      oc start-build ${APP_NAME} \
+        --env ARTIFACTORY_URL=${ARTIFACTORY_URL} \
+        --env ARTIFACTORY_USER=${ARTIFACTORY_USER} \
+        --env ARTIFACTORY_TOKEN=${ARTIFACTORY_TOKEN} \
+        --env JAR_PATH="com/example/${APP_NAME}/${VERSION}/${APP_NAME}-${VERSION}.jar" \
+        --env VERSION=${VERSION} \
+        --follow
+    
+    # Taguj obraz
+    - echo "Tagging image..."
+    - oc tag ${APP_NAME}:latest ${APP_NAME}:${VERSION}
+    
+    # Push do Artifactory Docker Registry (opcjonalnie)
+    - echo "Pushing to Artifactory Docker registry..."
+    - |
+      # Login do internal registry
+      IMAGE_REGISTRY=$(oc get route default-route -n openshift-image-registry -o jsonpath='{.spec.host}')
+      podman login -u ${ARTIFACTORY_USER} -p ${ARTIFACTORY_TOKEN} ${ARTIFACTORY_URL}
+      
+      # Pull z OpenShift registry
+      podman pull ${IMAGE_REGISTRY}/${OC_PROJECT}/${APP_NAME}:${VERSION}
+      
+      # Tag i push do Artifactory
+      podman tag ${IMAGE_REGISTRY}/${OC_PROJECT}/${APP_NAME}:${VERSION} \
+                 ${ARTIFACTORY_URL}/${ARTIFACTORY_DOCKER_REPO}/${APP_NAME}:${VERSION}
+      
+      podman push ${ARTIFACTORY_URL}/${ARTIFACTORY_DOCKER_REPO}/${APP_NAME}:${VERSION}
+  
+  dependencies:
+    - maven-build
+  
+  only:
+    - main
+    - develop
+
+# ============================================
+# STAGE 3: Deploy to OpenShift
+# ============================================
+openshift-deploy:
+  stage: deploy
+  image: 
+    name: quay.io/openshift/origin-cli:latest
+    entrypoint: [""]
+  script:
+    # Login do OpenShift
+    - echo "Logging into OpenShift..."
+    - oc login ${OPENSHIFT_API_URL} --token=${OPENSHIFT_TOKEN} --insecure-skip-tls-verify=true
+    - oc project ${OC_PROJECT}
+    
+    # Sprawdź czy Deployment istnieje
+    - |
+      if ! oc get deployment ${APP_NAME} &>/dev/null; then
+        echo "Creating Deployment..."
+        oc apply -f openshift/deployment.yaml
+      fi
+    
+    # Update image w Deployment
+    - echo "Updating deployment image..."
+    - oc set image deployment/${APP_NAME} ${APP_NAME}=${APP_NAME}:${VERSION}
+    
+    # Rollout
+    - echo "Performing rollout..."
+    - oc rollout status deployment/${APP_NAME} --watch --timeout=300s
+    
+    # Weryfikacja
+    - echo "Verifying deployment..."
+    - oc get pods -l app=${APP_NAME}
+    - oc get deployment ${APP_NAME}
+    
+  dependencies:
+    - openshift-build
+  
+  only:
+    - main
+  
+  when: manual  # Wymaga manualnego zatwierdzenia dla produkcji
+
+# ============================================
+# Optional: Rollback stage
+# ============================================
+rollback:
+  stage: deploy
+  image: 
+    name: quay.io/openshift/origin-cli:latest
+    entrypoint: [""]
+  script:
+    - oc login ${OPENSHIFT_API_URL} --token=${OPENSHIFT_TOKEN} --insecure-skip-tls-verify=true
+    - oc project ${OC_PROJECT}
+    - oc rollout undo deployment/${APP_NAME}
+    - oc rollout status deployment/${APP_NAME} --watch
+  
+  when: manual
+  only:
+    - main
