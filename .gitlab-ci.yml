@@ -1,0 +1,48 @@
+image: jfrog-prod.it.local/zua-local/g-j21-mvn3915jfrog:latest
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+# Job dla codziennych buildów (Snapshot do JFrog)
+deploy_snapshot:
+  stage: deploy
+  script:
+    - cp ci-settings.xml ~/.m2/settings.xml
+    - mvn clean deploy -DskipTests
+  only:
+    - main
+  tags:
+    - bainptest
+
+# Job do tworzenia oficjalnej wersji (Tagowanie + Release)
+release:
+  stage: deploy
+  script:
+    # 1. Konfiguracja tożsamości Gita
+    - git config --global user.email "przemyslaw.bainski@knf.gov.pl"
+    - git config --global user.name "GitLab CI (robot)"
+
+    # 2. Podmiana adresu URL na taki, który zawiera token (aby push działał)
+    # Usuwamy prefix 'https://' i wstawiamy wersję z tokenem
+    - git remote set-url origin https://gitlab-ci-token:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git
+    
+    # 3. Upewnienie się, że jesteśmy na konkretnej gałęzi (Maven release tego wymaga)
+    - git checkout -B "$CI_COMMIT_REF_NAME"
+    - git reset --hard origin/$CI_COMMIT_REF_NAME
+    - git clean -fd
+    - mkdir -p ~/.m2
+    - cp ci-settings.xml ~/.m2/settings.xml
+    - rm -f release.properties pom.xml.releaseBackup pom.xml.tag pom.xml.next pom.xml.backup
+#    - alias mvn='mvn -s $(pwd)/ci-settings.xml'
+    # 4. Wykonanie release
+    # release:prepare -> zmienia wersję w pom.xml, robi commit i tag
+    # release:perform -> buduje paczkę z taga i robi 'mvn deploy' do JFrog
+    - mvn -B -e release:clean release:prepare release:perform \
+        -DskipTests \
+        -DscmCommentPrefix="[ci skip] " \
+        -Darguments="-DskipTests"
+  when: manual
+  only:
+    - main
+  tags:
+    - bainptest
