@@ -1,0 +1,47 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+    
+    <servers>
+        <server>
+            <id>artifactory</id>
+            <username>${env.ARTIFACTORY_USER}</username>
+            <password>${env.ARTIFACTORY_PASS}</password>
+        </server>
+    </servers>
+
+    <mirrors>
+        <mirror>
+            <!-- To wymusza, by WSZYSTKIE zapytania o biblioteki szły przez Artifactory -->
+            <id>artifactory</id>
+            <mirrorOf>*</mirrorOf>
+            <url>https://jfrog-prod.it.local/artifactory/maven-virtual/</url>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>jfrog-profile</id>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>https://jfrog-prod.it.local/artifactory/maven-virtual/</url>
+                    <snapshots><enabled>true</enabled></snapshots>
+                    <releases><enabled>true</enabled></releases>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>https://jfrog-prod.it.local/artifactory/maven-virtual/</url>
+                    <snapshots><enabled>true</enabled></snapshots>
+                    <releases><enabled>true</enabled></releases>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>jfrog-profile</activeProfile>
+    </activeProfiles>
+</settings>
