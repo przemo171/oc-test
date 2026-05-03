@@ -1,57 +1,97 @@
-[INFO] [INFO] Installing /builds/group/user/test/target/checkout/pom.xml to /builds/group/user/test/.m2/repository/pl/example/maven-test-app/1.0/maven-test-app-1.0.pom
-[INFO] [INFO] Installing /builds/group/user/test/target/checkout/target/maven-test-app-1.0.jar to /builds/group/user/test/.m2/repository/pl/example/maven-test-app/1.0/maven-test-app-1.0.jar
-[INFO] [INFO] 
-[INFO] [INFO] --- deploy:3.1.4:deploy (default-deploy) @ maven-test-app ---
-[INFO] [INFO] Uploading to artifactory: https://jfrog.example.com/artifactory/local/temp/maven-release-local/pl/example/maven-test-app/1.0/maven-test-app-1.0.pom
-[INFO] [INFO] Uploaded to artifactory: https://jfrog.example.com/artifactory/local/temp/maven-release-local/pl/example/maven-test-app/1.0/maven-test-app-1.0.pom (2.1 kB at 28 kB/s)
-[INFO] [INFO] Uploading to artifactory: https://jfrog.example.com/artifactory/local/temp/maven-release-local/pl/example/maven-test-app/1.0/maven-test-app-1.0.jar
-[INFO] [INFO] Uploaded to artifactory: https://jfrog.example.com/artifactory/local/temp/maven-release-local/pl/example/maven-test-app/1.0/maven-test-app-1.0.jar (2.8 kB at 73 kB/s)
-[INFO] [INFO] Downloading from artifactory: https://jfrog.example.com/artifactory/local/temp/maven-release-local/pl/example/maven-test-app/maven-metadata.xml
-[INFO] [INFO] Uploading to artifactory: https://jfrog.example.com/artifactory/local/temp/maven-release-local/pl/example/maven-test-app/maven-metadata.xml
-[INFO] [INFO] Uploaded to artifactory: https://jfrog.example.com/artifactory/local/temp/maven-release-local/pl/example/maven-test-app/maven-metadata.xml (300 B at 8.6 kB/s)
-[INFO] [INFO] ------------------------------------------------------------------------
-[INFO] [INFO] BUILD SUCCESS
-[INFO] [INFO] ------------------------------------------------------------------------
-[INFO] [INFO] Total time:  1.769 s
-[INFO] [INFO] Finished at: 2026-05-03T07:14:07Z
-[INFO] [INFO] ------------------------------------------------------------------------
-[INFO] Cleaning up after release...
-[INFO] 
-[INFO] ---------------------< pl.example:maven-test-app >----------------------
-[INFO] Building maven-test-app 1.0-SNAPSHOT
-[INFO]   from pom.xml
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  13.892 s
-[INFO] Finished at: 2026-05-03T07:14:07Z
-[INFO] ------------------------------------------------------------------------
-[ERROR] Unknown lifecycle phase " -DskipTests". You must specify a valid lifecycle phase or a goal in the format <plugin-prefix>:<goal> or <plugin-group-id>:<plugin-artifact-id>[:<plugin-version>]:<goal>. Available lifecycle phases are: pre-clean, clean, post-clean, validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy, pre-site, site, post-site, site-deploy. -> [Help 1]
-org.apache.maven.lifecycle.LifecyclePhaseNotFoundException: Unknown lifecycle phase " -DskipTests". You must specify a valid lifecycle phase or a goal in the format <plugin-prefix>:<goal> or <plugin-group-id>:<plugin-artifact-id>[:<plugin-version>]:<goal>. Available lifecycle phases are: pre-clean, clean, post-clean, validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy, pre-site, site, post-site, site-deploy.
-    at org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateLifecycleMappings (DefaultLifecycleExecutionPlanCalculator.java:225)
-    at org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateMojoExecutions (DefaultLifecycleExecutionPlanCalculator.java:197)
-    at org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan (DefaultLifecycleExecutionPlanCalculator.java:119)
-    at org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan (DefaultLifecycleExecutionPlanCalculator.java:135)
-    at org.apache.maven.lifecycle.internal.builder.BuilderCommon.resolveBuildPlan (BuilderCommon.java:93)
-    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:100)
-    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
-    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
-    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
-    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
-    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
-    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
-    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:919)
-    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:285)
-    at org.apache.maven.cli.MavenCli.main (MavenCli.java:207)
-    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
-    at java.lang.reflect.Method.invoke (Method.java:580)
-    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
-    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
-    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
-    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
-[ERROR] 
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/LifecyclePhaseNotFoundException
+stages:
+  - deploy
+  - package
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  OC_SERVER:        "https://api.cluster.example.com:6443"  # → CI variable
+  OC_NAMESPACE:     "my-namespace"                           # → CI variable
+  BUILDCONFIG_NAME: "maven-test-app"                         # → CI variable
+  IMAGE_REGISTRY:   "jfrog.example.com"
+  IMAGE_NAME:       "docker-local/maven-test-app"
+  RELEASE_REPO:     "local/temp/maven-release-local/pl/example/maven-test-app"
+
+# ── SNAPSHOT ──────────────────────────────────────────────────────────────
+
+deploy_snapshot:
+  stage: deploy
+  image: jfrog.example.com/local/g-j21-mvn3915jfrog:latest
+  script:
+    - mkdir -p ~/.m2
+    - cp ci-settings.xml ~/.m2/settings.xml
+    - mvn clean deploy -DskipTests
+    - mvn help:evaluate -Dexpression=project.version -q -DforceStdout > .version
+  artifacts:
+    paths:
+      - target/maven-test-app-*.jar
+      - .version
+    expire_in: 1 hour
+  only:
+    - main
+  tags:
+    - test
+
+build_image_snapshot:
+  stage: package
+  image: jfrog.example.com/local/g-j21-mvn3915jfrog:latest
+  needs:
+    - job: deploy_snapshot
+      artifacts: true
+  script:
+    - VERSION=$(cat .version)
+    - .ci/oc-login.sh
+    - oc patch bc/$BUILDCONFIG_NAME -n $OC_NAMESPACE
+        -p "{\"spec\":{\"output\":{\"to\":{\"name\":\"${IMAGE_REGISTRY}/${IMAGE_NAME}:${VERSION}\"}}}}"
+    - oc start-build $BUILDCONFIG_NAME -n $OC_NAMESPACE --from-dir=. --wait
+  only:
+    - main
+  tags:
+    - test
+
+# ── RELEASE ───────────────────────────────────────────────────────────────
+
+release:
+  stage: deploy
+  image: jfrog.example.com/local/g-j21-mvn3915jfrog:latest
+  script:
+    - git config --global user.email "mail@example.com"
+    - git config --global user.name "GitLab CI (robot)"
+    - git remote set-url origin https://gitlab-ci-token:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git
+    - git checkout -B "$CI_COMMIT_REF_NAME"
+    - git reset --hard origin/$CI_COMMIT_REF_NAME
+    - git clean -fd
+    - mkdir -p ~/.m2
+    - cp ci-settings.xml ~/.m2/settings.xml
+    - rm -f release.properties pom.xml.releaseBackup pom.xml.tag pom.xml.next pom.xml.backup
+    - mvn -B -e release:clean release:prepare release:perform -DskipTests -DscmCommentPrefix="[ci skip] "
+  when: manual
+  only:
+    - main
+  tags:
+    - test
+
+build_image_release:
+  stage: package
+  image: jfrog.example.com/local/g-j21-mvn3915jfrog:latest
+  needs:
+    - job: release
+  script:
+    - git fetch --tags
+    - VERSION=$(git describe --tags --abbrev=0 | sed 's/^v//')
+    - mkdir -p target
+    - curl -f -u "$ARTIFACTORY_USER:$ARTIFACTORY_PASS"
+        "https://${IMAGE_REGISTRY}/artifactory/${RELEASE_REPO}/${VERSION}/maven-test-app-${VERSION}.jar"
+        -o "target/maven-test-app-${VERSION}.jar"
+    - .ci/oc-login.sh
+    - oc patch bc/$BUILDCONFIG_NAME -n $OC_NAMESPACE
+        -p "{\"spec\":{\"output\":{\"to\":{\"name\":\"${IMAGE_REGISTRY}/${IMAGE_NAME}:${VERSION}\"}}}}"
+    - oc start-build $BUILDCONFIG_NAME -n $OC_NAMESPACE --from-dir=. --wait
+    # dodatkowo tag latest
+    - oc patch bc/$BUILDCONFIG_NAME -n $OC_NAMESPACE
+        -p "{\"spec\":{\"output\":{\"to\":{\"name\":\"${IMAGE_REGISTRY}/${IMAGE_NAME}:latest\"}}}}"
+    - oc start-build $BUILDCONFIG_NAME -n $OC_NAMESPACE --from-dir=. --wait
+  when: manual
+  only:
+    - main
+  tags:
+    - test
