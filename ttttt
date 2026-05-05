@@ -281,3 +281,5 @@ ldapsearch -H ldap://twoj-dc.domena.local \
   -b "DC=domena,DC=local" \
   "(&(sAMAccountName=jan.nowak)(memberOf=CN=jfrog-developers,OU=Grupy,DC=domena,DC=local))"
 
+
+Get-ChildItem -Recurse -File | Select-Object FullName | Export-Csv -NoTypeInformation files.csv
