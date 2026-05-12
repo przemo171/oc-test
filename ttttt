@@ -283,3 +283,11 @@ ldapsearch -H ldap://twoj-dc.domena.local \
 
 
 Get-ChildItem -Recurse -File | Select-Object FullName | Export-Csv -NoTypeInformation files.csv
+
+
+
+
+{"level":"info","msg":"GitLab Pages","revision":"8375012a","time":"2026-05-12T18:18:00+02:00","version":"18.8.4"}
+{"level":"info","msg":"URL: https://gitlab.com/gitlab-org/gitlab-pages","time":"2026-05-12T18:18:00+02:00"}
+{"config_addr":"0.0.0.0:8091","level":"info","listen_addr":{"IP":"::","Port":8091,"Zone":""},"msg":"server listening on: [::]:8091","time":"2026-05-12T18:18:00+02:00"}
+{"error":"1 error occurred:\n\t* failed to listen on addr localhost:8090: listen tcp 127.0.0.1:8090: bind: address already in use\n\n","level":"fatal","msg":"1 error occurred:\n\t* failed to listen on addr localhost:8090: listen tcp 127.0.0.1:8090: bind: address already in use\n\n","time":"2026-05-12T18:18:00+02:00"}
