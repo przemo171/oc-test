@@ -388,3 +388,23 @@ spec:
   serviceaccount: bot
   tags: test
   token: test-runner-token
+
+
+
+ Type     Reason          Age                  From               Message
+  ----     ------          ----                 ----               -------
+  Normal   Scheduled       20m                  default-scheduler  Successfully assigned tools/test-runner-runner-bf9cfc695-sngnv to worker.example.local
+  Normal   AddedInterface  20m                  multus             Add eth0 [10.128.3.120/23] from ovn-kubernetes
+  Normal   Pulling         20m                  kubelet            Pulling image "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp@sha256:051c19545e9dded491dde6b806bd982fe3006ffa7d2d370db4e384706c1195de"
+  Normal   Pulled          20m                  kubelet            Successfully pulled image "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp@sha256:051c19545e9dded491dde6b806bd982fe3006ffa7d2d370db4e384706c1195de" in 1.297s (1.297s including waiting). Image size: 305120143 bytes.
+  Normal   Created         20m                  kubelet            Created container: configure
+  Normal   Started         20m                  kubelet            Started container configure
+  Normal   Pulled          20m                  kubelet            Successfully pulled image "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp@sha256:051c19545e9dded491dde6b806bd982fe3006ffa7d2d370db4e384706c1195de" in 1.339s (1.339s including waiting). Image size: 305120143 bytes.
+  Normal   Pulled          20m                  kubelet            Successfully pulled image "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp@sha256:051c19545e9dded491dde6b806bd982fe3006ffa7d2d370db4e384706c1195de" in 1.624s (1.624s including waiting). Image size: 305120143 bytes.
+  Normal   Pulled          20m                  kubelet            Successfully pulled image "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp@sha256:051c19545e9dded491dde6b806bd982fe3006ffa7d2d370db4e384706c1195de" in 1.276s (1.276s including waiting). Image size: 305120143 bytes.
+  Normal   Pulled          19m                  kubelet            Successfully pulled image "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp@sha256:051c19545e9dded491dde6b806bd982fe3006ffa7d2d370db4e384706c1195de" in 1.303s (1.303s including waiting). Image size: 305120143 bytes.
+  Normal   Pulled          18m                  kubelet            Successfully pulled image "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp@sha256:051c19545e9dded491dde6b806bd982fe3006ffa7d2d370db4e384706c1195de" in 1.272s (1.272s including waiting). Image size: 305120143 bytes.
+  Normal   Started         18m (x5 over 20m)    kubelet            Started container runner
+  Normal   Created         18m (x5 over 20m)    kubelet            Created container: runner
+  Normal   Pulling         4m21s (x9 over 20m)  kubelet            Pulling image "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp@sha256:051c19545e9dded491dde6b806bd982fe3006ffa7d2d370db4e384706c1195de"
+  Warning  BackOff         17s (x106 over 20m)  kubelet            Back-off restarting failed container runner in pod test-runner-runner-bf9cfc695-sngnv_tools(f3453b1f-f8df-4e26-ad9c-ae90c16030fe)
