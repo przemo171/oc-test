@@ -291,3 +291,69 @@ Get-ChildItem -Recurse -File | Select-Object FullName | Export-Csv -NoTypeInform
 {"level":"info","msg":"URL: https://gitlab.com/gitlab-org/gitlab-pages","time":"2026-05-12T18:18:00+02:00"}
 {"config_addr":"0.0.0.0:8091","level":"info","listen_addr":{"IP":"::","Port":8091,"Zone":""},"msg":"server listening on: [::]:8091","time":"2026-05-12T18:18:00+02:00"}
 {"error":"1 error occurred:\n\t* failed to listen on addr localhost:8090: listen tcp 127.0.0.1:8090: bind: address already in use\n\n","level":"fatal","msg":"1 error occurred:\n\t* failed to listen on addr localhost:8090: listen tcp 127.0.0.1:8090: bind: address already in use\n\n","time":"2026-05-12T18:18:00+02:00"}
+
+
+
+
+
+apiVersion: apps.gitlab.com/v1beta2
+kind: Runner
+metadata:
+  name: test-runner
+  namespace: tools
+spec:
+  ca: gitlab-ca-cert
+  config: test-runner
+  gitlabUrl: 'https://gitlab.example.com'
+  imagePullPolicy: Always
+  namespace: tools
+  serviceaccount: bot
+  tags: bainptest
+  token: test-runner-token
+
+
+
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: test-runner
+  namespace: tools
+data:
+  config.toml: |+
+    concurrent = 10
+    check_interval = 30
+    log_level = "info"
+    listen_address = "[::]:9252"
+
+    [[runners]]
+      name = "shell-runner-openshift"
+      url = "https://gitlab.example.com/"
+      executor = "kubernetes"
+      environment = [
+        "HTTP_PROXY=http://proxy:3128",
+        "HTTPS_PROXY=http://proxy:3128",
+        "NO_PROXY=gitlab.example.com,localhost,127.0.0.1,example.local",
+        "no_proxy=gitlab.example.com,localhost,127.0.0.1,example.local",
+        "CI=true"
+      ]
+
+      [runners.kubernetes]
+        namespace = "tools"
+        privileged = false
+        service_account = "bot"
+        pull_policy = "always"
+        image = "jfrog-prod.example.local/artifactory/local/gfrog:latest"
+        poll_timeout = 180
+        helper_image = "gitlab/gitlab-runner-helper:latest"
+        cpu_request = "2"
+        memory_request = "2048Mi"
+        cpu_limit = "4"
+        memory_limit = "4096Mi"
+        image_pull_secrets = ["bot-dockercfg-5jf94"]
+      
+      request_concurrency = 4
+
+      [runners.session_server]
+        listen_address = "0.0.0.0:8093"
+        advertise_address = "0.0.0.0:8093"
+        session_timeout = 1800
