@@ -357,3 +357,34 @@ data:
         listen_address = "0.0.0.0:8093"
         advertise_address = "0.0.0.0:8093"
         session_timeout = 1800
+
+
+
+apiVersion: apps.gitlab.com/v1beta2
+kind: Runner
+metadata:
+  creationTimestamp: "2026-04-30T10:02:59Z"
+  finalizers:
+  - finalizer.gitlab.com
+  generation: 14
+  name: test-runner
+  namespace: tools
+  resourceVersion: "1554994013"
+  uid: c066bbe6-fcee-40cf-8ga9-2b97138ebf4b
+spec:
+  config: test-runner
+  gitlabUrl: https://gitlab.example.com
+  imagePullPolicy: Always
+  namespace: tools
+  podSpec:
+  - name: test-runner-runner
+    patch: |
+      spec:
+        hostAliases:
+          - ip: "172.25.240.84"
+            hostnames:
+              - "gitlab.example.com"
+    patchType: strategic
+  serviceaccount: bot
+  tags: test
+  token: test-runner-token
