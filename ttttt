@@ -408,3 +408,35 @@ spec:
   Normal   Created         18m (x5 over 20m)    kubelet            Created container: runner
   Normal   Pulling         4m21s (x9 over 20m)  kubelet            Pulling image "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp@sha256:051c19545e9dded491dde6b806bd982fe3006ffa7d2d370db4e384706c1195de"
   Warning  BackOff         17s (x106 over 20m)  kubelet            Back-off restarting failed container runner in pod test-runner-runner-bf9cfc695-sngnv_tools(f3453b1f-f8df-4e26-ad9c-ae90c16030fe)
+
+
+
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: redis-enterprise-scc-v2
+  annotations:
+    kubernetes.io/description: >-
+      redis-enterprise-scc-v2 is the minimal SCC needed to run Redis
+      Enterprise nodes on Kubernetes with automatic FD limit adjustment
+      enabled.
+allowedCapabilities:
+  - SYS_RESOURCE
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: false
+readOnlyRootFilesystem: false
+runAsUser:
+  type: MustRunAs
+  uid: 1001
+fsGroup:
+  type: MustRunAs
+  ranges:
+    - min: 1001
+      max: 1001
+seLinuxContext:
+  type: RunAsAny
