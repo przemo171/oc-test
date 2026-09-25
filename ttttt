@@ -440,3 +440,8 @@ fsGroup:
       max: 1001
 seLinuxContext:
   type: RunAsAny
+
+
+
+
+2026-09-25 14:28:12 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface pl.gov.knf.plusapi.infrastructure.repository.SystemRegulationAttachmentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
