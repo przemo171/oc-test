@@ -464,3 +464,39 @@ sudo podman exec -i claude sh -c 'cat > /tmp/t.json' <<'EOF'
  "tools":[{"type":"function","function":{"name":"get_weather","description":"Pogoda w miescie","parameters":{"type":"object","properties":{"city":{"type":"string"}},"required":["city"]}}}]}
 EOF
 sudo podman exec claude sh -c 'curl -s -m120 https://litellm.apps.ocp4.it.local/v1/chat/completions -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" -H "Content-Type: application/json" -d @/tmp/t.json | jq ".choices[0] | {finish_reason, content: .message.content, tool_calls: .message.tool_calls}"'
+
+
+
+sudo podman exec claude sh -c 'curl -s -m180 https://litellm.apps.ocp4.it.local/v1/messages -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" -H "anthropic-version: 2023-06-01" -H "Content-Type: application/json" -d @/tmp/t2.json | jq "{stop_reason, content}"'
+{
+  "stop_reason": "tool_use",
+  "content": [
+    {
+      "type": "tool_use",
+      "id": "call_915c9665-a429-4a90-bb5a-d50a608b4ef4",
+      "name": "get_weather",
+      "input": {
+        "city": "Warszawa"
+      },
+      "provider_specific_fields": null
+    }
+  ]
+}
+
+
+
+sudo podman exec claude sh -c 'curl -s -m120 https://litellm.apps.ocp4.it.local/v1/chat/completions -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" -H "Content-Type: application/json" -d @/tmp/t.json | jq ".choices[0] | {finish_reason, content: .message.content, tool_calls: .message.tool_calls}"'
+{
+  "finish_reason": "tool_calls",
+  "content": null,
+  "tool_calls": [
+    {
+      "function": {
+        "arguments": "{\"city\": \"Warszawa\"}",
+        "name": "get_weather"
+      },
+      "id": "call_7d38e20f-bed4-423a-902a-18726362f2b7",
+      "type": "function"
+    }
+  ]
+}
