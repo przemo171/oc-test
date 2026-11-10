@@ -448,5 +448,24 @@ seLinuxContext:
 
 sudo podman exec claude sh -c 'time curl -s -m180 https://litellm.apps.ocp4.it.local/v1/messages -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" -H "anthropic-version: 2023-06-01" -H "Content-Type: application/json" -d @/tmp/t2.json | jq "{stop_reason, usage}"'
 
+
+{
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 173,
+    "total_tokens": 300
+  }
+}
+
+real    1m23.749s
+user    0m0.014s
+sys     0m0.006s
+
 sudo podman exec -it claude claude -p "Odpowiedz jednym zdaniem po polsku: czym jest syslog?"
+
+Claude Code doesn't recognize the model "gemma4:31b", so it assumes a context window of 200k tokens. Update Claude Code, or see https://code.claude.com/docs/en/model-config#correct-the-window-for-a-gateway-or-custom-model-id to set the window.
+[claude-code:unrecognized_model] {"model":"gemma4:31b","query_source":"sdk"}
+
+
 sudo podman exec -it claude claude -p "Wypisz pliki w /workspace"
