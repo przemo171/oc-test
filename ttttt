@@ -445,3 +445,12 @@ seLinuxContext:
 
 
 2026-09-25 14:28:12 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface pl.gov.knf.plusapi.infrastructure.repository.SystemRegulationAttachmentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+
+
+sudo podman exec -i claude sh -c 'cat > /tmp/t2.json' <<'EOF'
+{"model":"gemma4:31b","max_tokens":1000,
+ "messages":[{"role":"user","content":"Jaka jest pogoda w Warszawie?"}],
+ "tools":[{"name":"get_weather","description":"Pogoda w miescie",
+   "input_schema":{"type":"object","properties":{"city":{"type":"string"}},"required":["city"]}}]}
+EOF
+sudo podman exec claude sh -c 'curl -s -m180 https://litellm.apps.ocp4.it.local/v1/messages -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" -H "anthropic-version: 2023-06-01" -H "Content-Type: application/json" -d @/tmp/t2.json | jq "{stop_reason, content}"'
