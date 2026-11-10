@@ -466,6 +466,11 @@ EOF
 sudo podman exec claude sh -c 'curl -s -m120 https://litellm.apps.ocp4.it.local/v1/chat/completions -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" -H "Content-Type: application/json" -d @/tmp/t.json | jq ".choices[0] | {finish_reason, content: .message.content, tool_calls: .message.tool_calls}"'
 
 
+curl -s -o /tmp/resp.txt -D - -w '\nHTTP %{http_code}\n' \
+  https://cpd-ai.it.local/api/show -H 'Content-Type: application/json' -d '{"model":"gemma4:31b"}'
+head -c 500 /tmp/resp.txt; echo
+
+
 
 sudo podman exec claude sh -c 'curl -s -m180 https://litellm.apps.ocp4.it.local/v1/messages -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" -H "anthropic-version: 2023-06-01" -H "Content-Type: application/json" -d @/tmp/t2.json | jq "{stop_reason, content}"'
 {
