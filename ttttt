@@ -469,3 +469,103 @@ Claude Code doesn't recognize the model "gemma4:31b", so it assumes a context wi
 
 
 sudo podman exec -it claude claude -p "Wypisz pliki w /workspace"
+
+
+docker exec cnt_prod_ollama sh -c 'ollama ps'
+NAME                          ID              SIZE      PROCESSOR    CONTEXT    RUNNER      UNTIL
+nemotron-3.5-lightning:30b    e7a64ff15fb1    33 GB     100% GPU     64000      llamacpp    3 minutes from now
+gemma4:26b                    777b927e3b6b    17 GB     100% GPU     64000      llamacpp    About a minute from now
+bge-m3:567m                   790764642607    689 MB    100% GPU     8192       llamacpp    7 seconds from now
+
+
+docker exec cnt_prod_ollama sh -c 'ollama run gemma4:31b --verbose "Powiedz:OK"'
+Thinking...
+*   Input: "Powiedz:OK" (Polish)
+    *   Meaning: "Say: OK"
+
+    *   The user wants me to say "OK".
+
+    *   Response: "OK"
+...done thinking.
+
+OK
+
+total duration:       10.873283269s
+load duration:        8.717258074s
+prompt eval count:    20 token(s)
+prompt eval duration: 194.821ms
+prompt eval rate:     102.66 tokens/s
+eval count:           52 token(s)
+eval duration:        1.95963s
+eval rate:            26.54 tokens/s
+
+
+
+nvidia-smi
+Thu Nov 12 11:07:30 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-PCIE-32GB           On  |   00000000:12:00.0 Off |                    0 |
+| N/A   32C    P0             36W /  250W |   15410MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  Tesla V100-PCIE-32GB           On  |   00000000:13:00.0 Off |                    0 |
+| N/A   31C    P0             38W /  250W |   13270MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  Tesla V100-PCIE-32GB           On  |   00000000:48:00.0 Off |                    0 |
+| N/A   31C    P0             37W /  250W |   13506MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   3  Tesla V100-PCIE-32GB           On  |   00000000:49:00.0 Off |                    0 |
+| N/A   30C    P0             35W /  250W |   13038MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   4  Tesla V100-PCIE-32GB           On  |   00000000:89:00.0 Off |                    0 |
+| N/A   50C    P0            166W /  250W |   26046MiB /  32768MiB |     91%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   5  Tesla V100-PCIE-32GB           On  |   00000000:8A:00.0 Off |                    0 |
+| N/A   31C    P0             37W /  250W |   15476MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   6  Tesla V100-PCIE-32GB           On  |   00000000:C1:00.0 Off |                    0 |
+| N/A   30C    P0             36W /  250W |    8304MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   7  Tesla V100-PCIE-32GB           On  |   00000000:C2:00.0 Off |                    0 |
+| N/A   31C    P0             35W /  250W |   21036MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A         1344727      C   /usr/lib/ollama/llama-server           6592MiB |
+|    0   N/A  N/A         1348442      C   /usr/lib/ollama/llama-server           8806MiB |
+|    1   N/A  N/A         1344727      C   /usr/lib/ollama/llama-server           7060MiB |
+|    1   N/A  N/A         1348442      C   /usr/lib/ollama/llama-server           6198MiB |
+|    2   N/A  N/A         1344727      C   /usr/lib/ollama/llama-server           6792MiB |
+|    2   N/A  N/A         1348442      C   /usr/lib/ollama/llama-server           6702MiB |
+|    3   N/A  N/A         1344727      C   /usr/lib/ollama/llama-server           6036MiB |
+|    3   N/A  N/A         1348442      C   /usr/lib/ollama/llama-server           6990MiB |
+|    4   N/A  N/A         1343781      C   /usr/lib/ollama/llama-server          19878MiB |
+|    4   N/A  N/A         1344727      C   /usr/lib/ollama/llama-server           1888MiB |
+|    4   N/A  N/A         1348442      C   /usr/lib/ollama/llama-server           4268MiB |
+|    5   N/A  N/A         1344727      C   /usr/lib/ollama/llama-server           8160MiB |
+|    5   N/A  N/A         1348442      C   /usr/lib/ollama/llama-server           7304MiB |
+|    6   N/A  N/A          531759      C   python3.13                             5504MiB |
+|    6   N/A  N/A         2940297      C   /usr/bin/python3.13                     886MiB |
+|    6   N/A  N/A         3391015      C   /usr/bin/python3.13                    1910MiB |
+|    7   N/A  N/A         1315923      C   /usr/lib/ollama/llama-server           1886MiB |
+|    7   N/A  N/A         1316078      C   /usr/lib/ollama/llama-server           1108MiB |
+|    7   N/A  N/A         1316229      C   /usr/lib/ollama/llama-server           8702MiB |
+|    7   N/A  N/A         1326259      C   python                                 9336MiB |
++-----------------------------------------------------------------------------------------+
